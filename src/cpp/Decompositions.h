@@ -71,7 +71,16 @@ public:
 
   static SVDResult svd(const DMD &M, bool thin)
   {
-    Eigen::BDCSVD<Matrix> svd(M.data, thin ? (Eigen::ComputeThinU | Eigen::ComputeThinV) : (Eigen::ComputeFullU | Eigen::ComputeFullV));
+    if (thin)
+    {
+      Eigen::BDCSVD<Matrix, Eigen::ComputeThinU | Eigen::ComputeThinV> svd(M.data);
+      return (SVDResult){
+          .sv = DMD(svd.singularValues()),
+          .U = DMD(svd.matrixU()),
+          .V = DMD(svd.matrixV())};
+    }
+
+    Eigen::BDCSVD<Matrix, Eigen::ComputeFullU | Eigen::ComputeFullV> svd(M.data);
     return (SVDResult){
         .sv = DMD(svd.singularValues()),
         .U = DMD(svd.matrixU()),

@@ -50,11 +50,15 @@ namespace Eigen {
       {
 	static std::mt19937 rng;                        // The uniform pseudo-random algorithm
 	mutable std::normal_distribution<Scalar> norm; // gaussian combinator
-	
-	EIGEN_EMPTY_STRUCT_CTOR(scalar_normal_dist_op)
+
+  scalar_normal_dist_op() : norm(Scalar(0), Scalar(1)) {}
+
+  template<typename Index>
+  inline const Scalar operator() (Index) const { return norm(rng); }
 
 	template<typename Index>
 	inline const Scalar operator() (Index, Index = 0) const { return norm(rng); }
+  inline const Scalar operator() () const { return norm(rng); }
 	inline void seed(const uint64_t &s) { rng.seed(s); }
       };
 

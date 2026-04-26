@@ -18,6 +18,8 @@ class QuadProgSolver
   using T = Eigen::Triplet<double>;
   using DMD = DenseMatrix<double>;
   using SMD = SparseMatrix<double>;
+  using QInt = OSQPInt;
+  using QFloat = OSQPFloat;
 
 public:
   // Minimize 0.5 xT.P.x + qT.x
@@ -30,13 +32,13 @@ public:
     assert(u.rows() == A.rows() && "u and A must have the same number of rows");
 
 
-    int n = P.rows();
-    int m = A.rows();
-    csc *P_ = sparseToCSC(P);
-    csc *A_ = sparseToCSC(A);
-    double *q_ = denseToArray(q);
-    double *l_ = denseToArray(l);
-    double *u_ = denseToArray(u);
+    QInt n = static_cast<QInt>(P.rows());
+    QInt m = static_cast<QInt>(A.rows());
+    OSQPCscMatrix* P_ = sparseToCSC(P);
+    OSQPCscMatrix* A_ = sparseToCSC(A);
+    QFloat* q_ = denseToArray(q);
+    QFloat* l_ = denseToArray(l);
+    QFloat* u_ = denseToArray(u);
 
     // Workspace settings
     OSQPSettings settings;
@@ -44,31 +46,20 @@ public:
     // settings.max_iter = 10;
     settings.verbose = 0;
 
-    OSQPData data = {
-        .n = n,
-        .m = m,
-        .P = P_,
-        .A = A_,
-        .q = q_,
-        .l = l_,
-        .u = u_};
-
-    OSQPWorkspace *work;
-    int exitflag = osqp_setup(&work, &data, &settings);
+    OSQPSolver* solver = nullptr;
+    int exitflag = osqp_setup(&solver, P_, q_, A_, l_, u_, m, n, &settings);
     DMD x(n, 1);
-    if (!exitflag)
+    if (!exitflag && solver)
     {
-      osqp_solve(work);
-      double *xArr = work->solution->x;
-      for (int k = 0; k < n; k++)
+      osqp_solve(solver);
+      QFloat* xArr = solver->solution->x;
+      for (QInt k = 0; k < n; k++)
         x.set(k, 0, xArr[k]);
-        // x.print("solution");
-      // PRINT_MAT("x", work->solution->x, n);
     }
-    osqp_cleanup(work);
+    osqp_cleanup(solver);
     // Free matrices
-    free(P_); // Don't csc_free as sparse matrix pointers are being used
-    free(A_); // Don't csc_free as sparse matrix pointers are being used
+    OSQPCscMatrix_free(P_);
+    OSQPCscMatrix_free(A_);
     free(q_);
     free(l_);
     free(u_);
@@ -101,13 +92,13 @@ public:
     // PRINT_MAT("Outer index ptr", mat.outerIndexPtr(), nCols + 1);
 
     // Build csc from matrix
-    csc *P_csc = sparseToCSC(P);
-    csc *A_csc = sparseToCSC(A);
-    double q[2] = {1.0, 1.0};
-    double l[3] = {1.0, 0.0, 0.0};
-    double u[3] = {1.0, 0.7, 0.7};
-    int n = 2;
-    int m = 3;
+    OSQPCscMatrix* P_csc = sparseToCSC(P);
+    OSQPCscMatrix* A_csc = sparseToCSC(A);
+    QFloat q[2] = {1.0, 1.0};
+    QFloat l[3] = {1.0, 0.0, 0.0};
+    QFloat u[3] = {1.0, 0.7, 0.7};
+    QInt n = 2;
+    QInt m = 3;
 
     // Workspace settings
     OSQPSettings settings;
@@ -115,39 +106,36 @@ public:
     // settings.max_iter = 10;
     settings.verbose = 0;
 
-    OSQPData data = {
-        .n = n,
-        .m = m,
-        .P = P_csc,
-        .A = A_csc,
-        .q = q,
-        .l = l,
-        .u = u};
-
-    OSQPWorkspace *work;
-    int exitflag = osqp_setup(&work, &data, &settings);
+    OSQPSolver* solver = nullptr;
+    int exitflag = osqp_setup(&solver, P_csc, q, A_csc, l, u, m, n, &settings);
     if (!exitflag)
     {
-      osqp_solve(work);
-      // PRINT_MAT("x", work->solution->x, n);
+      osqp_solve(solver);
     }
-    osqp_cleanup(work);
+    osqp_cleanup(solver);
     // Free matrices
-    c_free(P_csc);
-    c_free(A_csc);
+    OSQPCscMatrix_free(P_csc);
+    OSQPCscMatrix_free(A_csc);
   }
 
-  static double* denseToArray(DMD mat) {
-    double *arr = (double *) malloc(mat.rows() * sizeof(double));
+  static QFloat* denseToArray(DMD mat) {
+    QFloat *arr = (QFloat *) malloc(mat.rows() * sizeof(QFloat));
     for (int k = 0; k < mat.rows(); k++) {
       arr[k] = mat.get(k, 0);
     }
     return arr;
   }
 
-  static csc *sparseToCSC(SMD &mat)
+  static OSQPCscMatrix* sparseToCSC(SMD &mat)
   {
-    return csc_matrix(mat.rows(), mat.cols(), mat.nonZeros(), mat.valuePtr(), mat.innerIndexPtr(), mat.outerIndexPtr());
+    return OSQPCscMatrix_new(
+      static_cast<QInt>(mat.rows()),
+      static_cast<QInt>(mat.cols()),
+      static_cast<QInt>(mat.nonZeros()),
+      reinterpret_cast<QFloat*>(mat.valuePtr()),
+      reinterpret_cast<QInt*>(mat.innerIndexPtr()),
+      reinterpret_cast<QInt*>(mat.outerIndexPtr())
+    );
   }
 
   static void solveBasic()
@@ -155,38 +143,30 @@ public:
     // Load problem data
     // P = [[4, 1]
     //      [0, 2]]
-    double P_x[3] = {4.0, 1.0, 2.0};
-    int P_nnz = 3;
-    int P_i[3] = {0, 0, 1};
-    int P_p[3] = {0, 1, 3};
-    double q[2] = {1.0, 1.0};
+    QFloat P_x[3] = {4.0, 1.0, 2.0};
+    QInt P_nnz = 3;
+    QInt P_i[3] = {0, 0, 1};
+    QInt P_p[3] = {0, 1, 3};
+    QFloat q[2] = {1.0, 1.0};
     // A = [[1 1
     //       1 0
     //       0 1]]
-    double A_x[4] = {1.0, 1.0, 1.0, 1.0};
-    int A_nnz = 4;
-    int A_i[4] = {0, 1, 0, 2};
-    int A_p[3] = {0, 2, 4};
-    double l[3] = {1.0, 0.0, 0.0};
-    double u[3] = {1.0, 0.7, 0.7};
-    int n = 2;
-    int m = 3;
+    QFloat A_x[4] = {1.0, 1.0, 1.0, 1.0};
+    QInt A_nnz = 4;
+    QInt A_i[4] = {0, 1, 0, 2};
+    QInt A_p[3] = {0, 2, 4};
+    QFloat l[3] = {1.0, 0.0, 0.0};
+    QFloat u[3] = {1.0, 0.7, 0.7};
+    QInt n = 2;
+    QInt m = 3;
 
     // Exitflag
     int exitflag = 0;
 
     // Workspace structures
     OSQPSettings settings;
-    OSQPData data;
-
-    // Populate data
-    data.n = n;
-    data.m = m;
-    data.P = csc_matrix(data.n, data.n, P_nnz, P_x, P_i, P_p);
-    data.q = q;
-    data.A = csc_matrix(data.m, data.n, A_nnz, A_x, A_i, A_p);
-    data.l = l;
-    data.u = u;
+    OSQPCscMatrix* P_mat = OSQPCscMatrix_new(n, n, P_nnz, P_x, P_i, P_p);
+    OSQPCscMatrix* A_mat = OSQPCscMatrix_new(m, n, A_nnz, A_x, A_i, A_p);
 
     // Define solver settings as default
     osqp_set_default_settings(&settings);
@@ -195,17 +175,16 @@ public:
     settings.verbose = 0;
 
     // Setup workspace
-    OSQPWorkspace *work;
-    exitflag = osqp_setup(&work, &data, &settings);
+    OSQPSolver* solver = nullptr;
+    exitflag = osqp_setup(&solver, P_mat, q, A_mat, l, u, m, n, &settings);
 
     // Solve Problem
-    osqp_solve(work);
-    // PRINT_MAT("x", work->solution->x, n);
+    osqp_solve(solver);
 
     // Cleanup
-    osqp_cleanup(work);
-    free(data.P);
-    free(data.A);
+    osqp_cleanup(solver);
+    OSQPCscMatrix_free(P_mat);
+    OSQPCscMatrix_free(A_mat);
     // return exitflag;
   }
 
