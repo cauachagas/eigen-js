@@ -127,9 +127,14 @@ Now compile osqp for a Webassembly target
 
 ```bash
 cd lib/osqp
-mkdir build; cd build
-emcmake cmake ..
-emmake make
+git checkout v1.0.0
+git submodule update --init --recursive
+emcmake cmake -S . -B build \
+  -DOSQP_BUILD_SHARED_LIB=OFF \
+  -DOSQP_BUILD_STATIC_LIB=ON \
+  -DOSQP_BUILD_DEMO_EXE=OFF \
+  -DOSQP_ENABLE_INTERRUPT=OFF
+emmake make -C build -j2
 ```
 
 Once done, eigen.js can be compile to a wasm binary
@@ -137,7 +142,7 @@ Once done, eigen.js can be compile to a wasm binary
 ```bash
 # From the root directory
 mkdir build
-emcc -I lib/eigen -I lib/osqp/include -Isrc lib/osqp/build/out/libosqp.a -s DISABLE_EXCEPTION_CATCHING=0 -s ASSERTIONS=0 -O3 -s ALLOW_MEMORY_GROWTH=1 -s MODULARIZE=1 --bind -o build/eigen_gen.js src/cpp/embind.cc 
+emcc -I lib/eigen -I lib/osqp/include/public -I lib/osqp/build/include/public -Isrc lib/osqp/build/out/libosqpstatic.a -s DISABLE_EXCEPTION_CATCHING=0 -s ASSERTIONS=0 -O3 -s ALLOW_MEMORY_GROWTH=1 -s MODULARIZE=1 --bind -o build/eigen_gen.js src/cpp/embind.cc 
 ```
 
 If you are not interested in the OSQP functionality, you can build without installing it with
