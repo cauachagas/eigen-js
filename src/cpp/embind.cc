@@ -8,6 +8,7 @@
 #include "Solvers.h"
 #include "Decompositions.h"
 #include "SimplicialCholesky.h"
+#include "SparseLU.h"
 #ifndef NO_OSQP
 #include "QuadProgSolver.h"
 #endif
@@ -20,6 +21,7 @@ using DDM = DenseMatrix<double>;
 using CDM = DenseMatrix<complex<double>>;
 using SDM = SparseMatrix<double>;
 using SDMSCholesky = SimplicialCholesky<SDM, Eigen::SparseMatrix<double>>;
+using SDMSparseLU = SparseLU<SDM, Eigen::SparseMatrix<double>>;
 
 EMSCRIPTEN_BINDINGS(Module)
 {
@@ -149,6 +151,10 @@ EMSCRIPTEN_BINDINGS(Module)
       .constructor<SDM>()
       .function("solve", &SDMSCholesky::solve);
 
+    class_<SDMSparseLU>("SparseLU")
+      .constructor<SDM>()
+      .function("solve", &SDMSparseLU::solve);
+
     // .function("matMulSelf", &SDM::matMulSelf, allow_raw_pointers());
     // .function("chol", &SDM::chol, allow_raw_pointers())
     // .function("lu", &SDM::lu, allow_raw_pointers())
@@ -181,6 +187,7 @@ EMSCRIPTEN_BINDINGS(Module)
         }))
         .class_function("careSolve", &Solvers::careSolve)
         .class_function("createSimplicialCholeskySolver", &Solvers::createSimplicialCholeskySolver)
+        .class_function("createSparseLUSolver", &Solvers::createSparseLUSolver)
         #ifndef NO_OSQP
         .class_function("quadProgSolve", &Solvers::quadProgSolve)
         #endif

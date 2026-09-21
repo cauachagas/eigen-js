@@ -47,4 +47,24 @@ describe('Sparse Matrix & SimplicialCholesky', () => {
     expect(x.get(1, 0)).toBeCloseTo(7 / 11, 4);
     eig.GC.flush();
   });
+
+  it('solves linear systems with SparseLU', () => {
+    // Solve non-symmetric system A * x = b
+    // A = [[1, 2], [3, 4]], b = [5, 11] -> x = [1, 2]
+    const triplets = new eig.TripletVector(4);
+    triplets.add(0, 0, 1);
+    triplets.add(0, 1, 2);
+    triplets.add(1, 0, 3);
+    triplets.add(1, 1, 4);
+
+    const A = new eig.SparseMatrix(2, 2, triplets);
+    const b = new eig.Matrix([5, 11]);
+
+    const lu = new eig.SparseLU(A);
+    const x = lu.solve(b);
+
+    expect(x.get(0, 0)).toBeCloseTo(1, 4);
+    expect(x.get(1, 0)).toBeCloseTo(2, 4);
+    eig.GC.flush();
+  });
 });

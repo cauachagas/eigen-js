@@ -8,6 +8,7 @@
 // #include <Eigen/Dense>
 #include "DenseMatrix.h"
 #include "SimplicialCholesky.h"
+#include "SparseLU.h"
 
 template <typename T>
 class TripletVector;
@@ -249,6 +250,7 @@ protected:
   // Eigen::SparseFactorization<T> factorization;
   
   friend class SimplicialCholesky<SparseMatrix<T>, Eigen::SparseMatrix<T>>;
+  friend class SparseLU<SparseMatrix<T>, Eigen::SparseMatrix<T>>;
 
   Eigen::SparseMatrix<T> data;
 };

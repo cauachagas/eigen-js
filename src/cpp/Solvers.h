@@ -5,6 +5,7 @@
 #include "DenseMatrix.h"
 #include "CareSolver.h"
 #include "SimplicialCholesky.h"
+#include "SparseLU.h"
 #ifndef NO_OSQP
 #include "QuadProgSolver.h"
 #endif
@@ -22,6 +23,13 @@ public:
    */
   static SimplicialCholesky<SMD, Eigen::SparseMatrix<double>> createSimplicialCholeskySolver(SMD &matrix) {
     return SimplicialCholesky<SMD, Eigen::SparseMatrix<double>>(matrix);
+  }
+
+  /**
+   * SparseLU solver
+   */
+  static SparseLU<SMD, Eigen::SparseMatrix<double>> createSparseLUSolver(SMD &matrix) {
+    return SparseLU<SMD, Eigen::SparseMatrix<double>>(matrix);
   }
 
   /**

@@ -289,16 +289,16 @@ for (let k = 0; k < iterations; k++) {
   {
     id: 'sparse_solve',
     name: 'Sparse linear system (A · x = b)',
-    description: 'Solves sparse linear system A · x = b using WebAssembly sparse direct solvers (Eigen SimplicialCholesky vs SuiteSparse UMFPACK)',
+    description: 'Solves sparse linear system A · x = b using WebAssembly sparse direct LU factorization (Eigen SparseLU vs SuiteSparse UMFPACK)',
     params: { size: 100, iterations: 50 },
     supportedLibs: ['eig', 'suitesparse'],
     codes: {
-      eig: `// Eigen.js (WASM) - SparseMatrix + SimplicialCholesky
+      eig: `// Eigen.js (WASM) - SparseMatrix + SparseLU Solver
 const A = createSparsePoissonMatrix(size);
 const b = createVector(size);
 for (let k = 0; k < iterations; k++) {
-  const chol = new eig.SimplicialCholesky(A);
-  const x = chol.solve(b);
+  const lu = new eig.SparseLU(A);
+  const x = lu.solve(b);
 }`,
       suitesparse: `// SuiteSparse (WASM) - UMFPACK Sparse LU Solver
 const problem = createCscSparseProblem(size);
@@ -322,8 +322,8 @@ for (let k = 0; k < iterations; k++) {
         const b = new window.eig.Matrix(Array.from(problem.bx).map(v => [v]));
 
         for (let k = 0; k < iterations; k++) {
-          const chol = new window.eig.SimplicialCholesky(A);
-          const x = chol.solve(b);
+          const lu = new window.eig.SparseLU(A);
+          const x = lu.solve(b);
         }
         const elapsed = performance.now() - start;
         window.eig?.GC?.flush();

@@ -112,6 +112,7 @@ eig.ready = Module.then(module => {
     "QuadProgSolver", // should be commented if libeigen built without OSQP
     "Random",
     "SimplicialCholesky",
+    "SparseLU",
   ]);
   classes.forEach(className => {
     try {

@@ -8,3 +8,4 @@ build/
 *.code-workspace
 lib/osqp/build/
 coverage/
+*.png
