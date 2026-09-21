@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Benchmarks of linear algebra JavaScript libraries comparing Eigen.js, ML Matrix, Math.js, Linalg, and LaloLib">
+  <title>Eigen.js - Benchmark</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Comparison Libraries -->
+  <script src="https://mlweb.loria.fr/lalolib-module.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/12.4.1/math.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ml-matrix@6.10.4/matrix.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/linear-algebra@3.1.4/dist/linear-algebra.min.js"></script>
+  <!-- Eigen.js WASM Bundle -->
+  <script src="dist/index.js"></script>
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="top-nav" id="topNav">
+    <div class="nav-left">
+      <button class="nav-btn" id="menuToggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <span class="nav-title">Benchmark</span>
+    </div>
+    <div class="nav-right">
+      <a href="https://github.com/cauachagas/eigen-js" target="_blank" rel="noopener noreferrer" class="nav-link" id="githubLink">
+        <span>GITHUB</span>
+        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="main-container" id="mainContent">
+    <section class="intro-section">
+      <h1 class="page-title">Benchmarks of linear algebra javascript libraries</h1>
+      <p class="page-subtitle">These tables compare the performances of different javascript linear algebra libraries</p>
+      <div class="status-badge" id="wasmStatus">
+        <span class="status-dot"></span>
+        <span class="status-text">Loading WebAssembly engine...</span>
+      </div>
+    </section>
+
+    <!-- Benchmarks Container populated by JS -->
+    <div class="benchmarks-list" id="benchmarksContainer"></div>
+  </main>
+
+  <footer class="footer">
+    <p>Eigen.js &bull; Port of the Eigen C++ linear algebra library to WebAssembly</p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
