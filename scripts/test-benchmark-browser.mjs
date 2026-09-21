@@ -9,112 +9,83 @@ const rootDir = path.resolve(__dirname, '..');
 
 const artifactDir = process.env.ARTIFACT_DIR || rootDir;
 
-console.log('=== Running Playwright Browser Benchmark Test ===');
+console.log('=== Running Playwright Full Site & Benchmark Test ===');
 
 const browser = await chromium.launch({
   headless: true
 });
 
 const page = await browser.newPage({
-  viewport: { width: 1200, height: 1000 }
+  viewport: { width: 1280, height: 950 }
 });
 
-page.on('console', msg => console.log('PAGE LOG:', msg.text()));
+page.on('console', msg => {
+  if (msg.type() === 'error') console.log('PAGE LOG [ERROR]:', msg.text());
+});
 page.on('pageerror', err => console.log('PAGE ERROR:', err.message));
 
 try {
-  console.log('Navigating to http://localhost:3000...');
-  await page.goto('http://localhost:3000', { waitUntil: 'domcontentloaded' });
+  // 1. Test Home View
+  console.log('1. Navigating to Home view (http://localhost:3000/#/)...');
+  await page.goto('http://localhost:3000/#/', { waitUntil: 'domcontentloaded' });
+  await page.waitForSelector('.hero-title', { timeout: 10000 });
+  const heroTitle = await page.locator('.hero-title').textContent();
+  console.log(` - Hero title: "${heroTitle.trim()}"`);
 
-  // 1. Check WASM status badge
+  // Verify canvas exists
+  const hasCanvas = await page.locator('#svdCanvas').isVisible();
+  console.log(` - Live SVD Canvas visible: ${hasCanvas}`);
+
+  // 2. Test Navigation Drawer & Matrix Documentation View
+  console.log('\n2. Testing navigation to Matrix documentation (#/matrix)...');
+  await page.click('#navMatrix');
+  await page.waitForSelector('.docs-class-name', { timeout: 5000 });
+  const className = await page.locator('.docs-class-name').textContent();
+  console.log(` - Navigated to class: "${className.trim()}"`);
+
+  // Verify methods rendered
+  const methodsCount = await page.locator('.method-card').count();
+  console.log(` - Rendered ${methodsCount} method cards for Matrix`);
+
+  // Test running an interactive example
+  console.log(' - Running interactive code example...');
+  const runBtn = page.locator('.run-example-btn').first();
+  await runBtn.click();
+  const visibleOutput = page.locator('.example-output:not([style*="display: none"]) .output-pre').first();
+  await visibleOutput.waitFor({ state: 'visible', timeout: 8000 });
+  const exampleOutput = await visibleOutput.textContent();
+  console.log(` - Example Output received:\n${exampleOutput.trim()}`);
+
+  // 3. Test Navigation to Solvers Documentation View
+  console.log('\n3. Testing navigation to Solvers documentation (#/solvers)...');
+  await page.click('#navSolvers');
+  await page.waitForFunction(() => document.querySelector('.docs-class-name')?.textContent === 'Solvers');
+  console.log(' - Solvers documentation loaded successfully');
+
+  // 4. Test Navigation to Decompositions Documentation View
+  console.log('\n4. Testing navigation to Decompositions (#/decompositions)...');
+  await page.click('#navDecompositions');
+  await page.waitForFunction(() => document.querySelector('.docs-class-name')?.textContent === 'Decompositions');
+  console.log(' - Decompositions documentation loaded successfully');
+
+  // 5. Test Navigation to Benchmark View
+  console.log('\n5. Testing navigation to Benchmark view (#/benchmark)...');
+  await page.click('#navBenchmark');
+  await page.waitForSelector('#card_sparse_solve', { timeout: 10000 });
+  console.log(' - Benchmark view loaded with all cards');
+
+  // Check WebAssembly status badge
   await page.waitForSelector('.status-badge.ready', { timeout: 10000 });
-  const statusText = await page.locator('.status-badge .status-text').textContent();
-  console.log('Status badge:', statusText);
+  const statusBadge = await page.locator('.status-badge .status-text').textContent();
+  console.log(` - Status badge: "${statusBadge.trim()}"`);
 
-  // 2. Test switching tabs under Matrix Multiplication
-  const tabs = page.locator('#card_mat_mul .tab-btn');
-  const count = await tabs.count();
-  console.log(`Found ${count} library tabs for Matrix Multiplication:`);
-  for (let i = 0; i < count; i++) {
-    const tabName = await tabs.nth(i).textContent();
-    await tabs.nth(i).click();
-    await page.waitForTimeout(50);
-    const code = await page.locator('#code_mat_mul').textContent();
-    console.log(` - Tab [${tabName.trim()}]: active, code length = ${code.length}`);
-  }
-
-  // Switch back to Eigen JS
-  await tabs.first().click();
-
-  // 3. Click RUN ALL on Matrix Multiplication
-  console.log('\nRunning RUN ALL on Matrix Multiplication...');
-  await page.click('#runAll_mat_mul');
-
-  // Wait for button to re-enable (finish)
+  // 6. Run Sparse Linear System benchmark (Eigen SparseLU vs SuiteSparse UMFPACK)
+  console.log('\n6. Running Sparse linear system benchmark...');
+  const runAllSparseBtn = page.locator('#card_sparse_solve .run-all-btn');
+  await runAllSparseBtn.click();
   await page.waitForFunction(() => {
-    const btn = document.querySelector('#runAll_mat_mul');
-    return btn && !btn.disabled && !btn.textContent.includes('Running');
-  }, { timeout: 30000 });
-
-  // Collect results
-  const results = await page.evaluate(() => {
-    const cells = Array.from(document.querySelectorAll('#card_mat_mul .results-table td'));
-    const headers = Array.from(document.querySelectorAll('#card_mat_mul .results-table th'));
-    return headers.map((h, i) => ({
-      library: h.textContent.trim(),
-      result: cells[i]?.textContent.trim()
-    }));
-  });
-
-  console.log('\n--- Matrix Multiplication Benchmark Results ---');
-  results.forEach(r => console.log(`  ${r.library}: ${r.result}`));
-
-  // 4. Click RUN ALL on Matrix Inversion
-  console.log('\nRunning RUN ALL on Matrix Inversion...');
-  await page.click('#runAll_mat_inv');
-  await page.waitForFunction(() => {
-    const btn = document.querySelector('#runAll_mat_inv');
-    return btn && !btn.disabled && !btn.textContent.includes('Running');
-  }, { timeout: 30000 });
-
-  const invResults = await page.evaluate(() => {
-    const cells = Array.from(document.querySelectorAll('#card_mat_inv .results-table td'));
-    const headers = Array.from(document.querySelectorAll('#card_mat_inv .results-table th'));
-    return headers.map((h, i) => ({
-      library: h.textContent.trim(),
-      result: cells[i]?.textContent.trim()
-    }));
-  });
-
-  console.log('\n--- Matrix Inversion Benchmark Results ---');
-  invResults.forEach(r => console.log(`  ${r.library}: ${r.result}`));
-
-  // 5. Click RUN ALL on SVD
-  console.log('\nRunning RUN ALL on Singular Value Decomposition...');
-  await page.click('#runAll_mat_svd');
-  await page.waitForFunction(() => {
-    const btn = document.querySelector('#runAll_mat_svd');
-    return btn && !btn.disabled && !btn.textContent.includes('Running');
-  }, { timeout: 30000 });
-
-  const svdResults = await page.evaluate(() => {
-    const cells = Array.from(document.querySelectorAll('#card_mat_svd .results-table td'));
-    const headers = Array.from(document.querySelectorAll('#card_mat_svd .results-table th'));
-    return headers.map((h, i) => ({
-      library: h.textContent.trim(),
-      result: cells[i]?.textContent.trim()
-    }));
-  });
-
-  console.log('\n--- SVD Benchmark Results ---');
-  svdResults.forEach(r => console.log(`  ${r.library}: ${r.result}`));
-
-  // 6. Click RUN ALL on Sparse Linear System (A * x = b)
-  console.log('\nRunning RUN ALL on Sparse Linear System (A * x = b)...');
-  await page.click('#runAll_sparse_solve');
-  await page.waitForFunction(() => {
-    const btn = document.querySelector('#runAll_sparse_solve');
-    return btn && !btn.disabled && !btn.textContent.includes('Running');
+    const btn = document.querySelector('#card_sparse_solve .run-all-btn');
+    return btn && !btn.disabled && !btn.textContent.includes('RUNNING');
   }, { timeout: 30000 });
 
   const sparseResults = await page.evaluate(() => {
@@ -126,17 +97,26 @@ try {
     }));
   });
 
-  console.log('\n--- Sparse Linear System Benchmark Results ---');
+  console.log('--- Sparse Linear System Benchmark Results ---');
   sparseResults.forEach(r => console.log(`  ${r.library}: ${r.result}`));
 
-  // 7. Capture screenshot
+  // 7. Test Hamburger toggle
+  console.log('\n7. Testing Hamburger menu toggle...');
+  const menuToggle = page.locator('#menuToggle');
+  await menuToggle.click();
+  const isCollapsed = await page.evaluate(() => document.getElementById('appLayout')?.classList.contains('drawer-collapsed'));
+  console.log(` - Drawer collapsed: ${isCollapsed}`);
+  await menuToggle.click(); // restore
+
+  // Take screenshot
   const screenshotPath = path.join(artifactDir, 'benchmark_screenshot.png');
   await page.screenshot({ path: screenshotPath, fullPage: true });
   console.log(`\nScreenshot saved to: ${screenshotPath}`);
 
-  console.log('\n=== Playwright browser test succeeded! ===');
-} catch (err) {
-  console.error('Playwright test failed:', err);
+  console.log('\n=== Playwright test completed successfully! ===');
+} catch (error) {
+  console.error('Playwright Test Failed:', error);
+  process.exit(1);
 } finally {
   await browser.close();
 }

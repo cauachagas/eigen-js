@@ -1,0 +1,7253 @@
+export const docsData = [
+  {
+    "description": {
+      "type": "root",
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "value": "A class containing various matrix decompositions algorithms"
+            }
+          ]
+        }
+      ]
+    },
+    "tags": [],
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 3,
+        "column": 3
+      }
+    },
+    "context": {
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 65,
+          "column": 1
+        }
+      },
+      "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Decompositions.js"
+    },
+    "augments": [],
+    "examples": [],
+    "implements": [],
+    "params": [],
+    "properties": [],
+    "returns": [],
+    "sees": [],
+    "throws": [],
+    "todos": [],
+    "yields": [],
+    "name": "Decompositions",
+    "kind": "class",
+    "members": {
+      "global": [],
+      "inner": [],
+      "instance": [],
+      "events": [],
+      "static": [
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Cholesky decomposition consists in decomposing a square, hermitian (or real symmetric), positive definite matrix A as a product A = L L*\nWhere L is lower triangular with real positive diagonal entries"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": null,
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "M"
+            },
+            {
+              "title": "returns",
+              "description": "Result",
+              "lineNumber": 4,
+              "type": {
+                "type": "NameExpression",
+                "name": "QRResult"
+              }
+            },
+            {
+              "title": "warning",
+              "description": "M must be positive definite",
+              "lineNumber": 5
+            },
+            {
+              "title": "example",
+              "description": "const M = new eig.Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);\nconst cholesky = eig.Decompositions.cholesky(M);\nreturn cholesky;",
+              "lineNumber": 6
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 2
+            },
+            "end": {
+              "line": 16,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 17,
+                "column": 2
+              },
+              "end": {
+                "line": 17,
+                "column": 24
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Decompositions.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const M = new eig.Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);\nconst cholesky = eig.Decompositions.cholesky(M);\nreturn cholesky;"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "M",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Result"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "QRResult"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "cholesky",
+          "kind": "function",
+          "memberof": "Decompositions",
+          "scope": "static",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Decompositions",
+              "kind": "class"
+            },
+            {
+              "name": "cholesky",
+              "kind": "function",
+              "scope": "static"
+            }
+          ],
+          "namespace": "Decompositions.cholesky"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "LU decomposition consists in decomposing a square matrix A as a product A = P^-1 * (L + I) * U * Q^-1\nWhere U is upper triangular L lower triangular, I is the identity matrix, and P & Q are two permutation matrices"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": null,
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "M"
+            },
+            {
+              "title": "returns",
+              "description": "Result",
+              "lineNumber": 4,
+              "type": {
+                "type": "NameExpression",
+                "name": "QRResult"
+              }
+            },
+            {
+              "title": "warning",
+              "description": "M must be a square matrix",
+              "lineNumber": 5
+            },
+            {
+              "title": "example",
+              "description": "const M = new eig.Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);\nconst lu = eig.Decompositions.lu(M);\n// Reconstruct M from its LU decomposition\nconst I = eig.Matrix.identity(3, 3);\nconst M2 = lu.P.inverse().matMul(lu.L.matAdd(I)).matMul(lu.U).matMul(lu.Q.inverse());\nreturn { ...lu, M2 };",
+              "lineNumber": 6
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 19,
+              "column": 2
+            },
+            "end": {
+              "line": 32,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 33,
+                "column": 2
+              },
+              "end": {
+                "line": 33,
+                "column": 18
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Decompositions.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const M = new eig.Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);\nconst lu = eig.Decompositions.lu(M);\n// Reconstruct M from its LU decomposition\nconst I = eig.Matrix.identity(3, 3);\nconst M2 = lu.P.inverse().matMul(lu.L.matAdd(I)).matMul(lu.U).matMul(lu.Q.inverse());\nreturn { ...lu, M2 };"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "M",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Result"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "QRResult"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "lu",
+          "kind": "function",
+          "memberof": "Decompositions",
+          "scope": "static",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Decompositions",
+              "kind": "class"
+            },
+            {
+              "name": "lu",
+              "kind": "function",
+              "scope": "static"
+            }
+          ],
+          "namespace": "Decompositions.lu"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "QR decomposition consists in decomposing any n-by-p matrix A with linearly independent colums as a product A = Q R\nWhere Q is a m-by-m unitary matrix and R is a m-by-n upper triangular matrix"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": null,
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "M"
+            },
+            {
+              "title": "returns",
+              "description": "Result",
+              "lineNumber": 4,
+              "type": {
+                "type": "NameExpression",
+                "name": "QRResult"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const M = new eig.Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);\nconst qr = eig.Decompositions.qr(M);\nreturn qr;",
+              "lineNumber": 5
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 35,
+              "column": 2
+            },
+            "end": {
+              "line": 44,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 45,
+                "column": 2
+              },
+              "end": {
+                "line": 45,
+                "column": 18
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Decompositions.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const M = new eig.Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);\nconst qr = eig.Decompositions.qr(M);\nreturn qr;"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "M",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Result"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "QRResult"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "qr",
+          "kind": "function",
+          "memberof": "Decompositions",
+          "scope": "static",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Decompositions",
+              "kind": "class"
+            },
+            {
+              "name": "qr",
+              "kind": "function",
+              "scope": "static"
+            }
+          ],
+          "namespace": "Decompositions.qr"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "SVD decomposition consists in decomposing any n-by-p matrix A as a product M = U S V'\nWhere U is a n-by-n unitary, V is a p-by-p unitary, and S is a n-by-p real positive diagonal matrix\nSingular values are always sorted in decreasing order.\nThe algorithm used is a two-sided jacobi SVD decomposition of rectangular matrices for small matrices (< 16x16), or bidiagonal divide and conquer SVD for large ones."
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Matrix of interest",
+              "lineNumber": 5,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "M"
+            },
+            {
+              "title": "param",
+              "description": "Only keep the non-zero singular values",
+              "lineNumber": 6,
+              "type": {
+                "type": "NameExpression",
+                "name": "boolean"
+              },
+              "name": "thin"
+            },
+            {
+              "title": "returns",
+              "description": "Result",
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "SVDResult"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const M = new eig.Matrix([[1, 2, 3], [4, 5, 6]]);\nconst svd = eig.Decompositions.svd(M, true);\n// Reconstruct M from its SVD decomposition\nlet sigma = new eig.Matrix(svd.U.cols(), svd.V.cols());\nsigma.setBlock(0, 0, eig.Matrix.diagonal(svd.sv));\nconst M2 = svd.U.matMul(sigma.transpose()).matMul(svd.V.transpose());\nreturn {...svd, M2}",
+              "lineNumber": 8
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 47,
+              "column": 2
+            },
+            "end": {
+              "line": 63,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 64,
+                "column": 2
+              },
+              "end": {
+                "line": 64,
+                "column": 25
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Decompositions.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const M = new eig.Matrix([[1, 2, 3], [4, 5, 6]]);\nconst svd = eig.Decompositions.svd(M, true);\n// Reconstruct M from its SVD decomposition\nlet sigma = new eig.Matrix(svd.U.cols(), svd.V.cols());\nsigma.setBlock(0, 0, eig.Matrix.diagonal(svd.sv));\nconst M2 = svd.U.matMul(sigma.transpose()).matMul(svd.V.transpose());\nreturn {...svd, M2}"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "M",
+              "lineNumber": 5,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Matrix of interest"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "param",
+              "name": "thin",
+              "lineNumber": 6,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Only keep the non-zero singular values"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "boolean"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Result"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "SVDResult"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "svd",
+          "kind": "function",
+          "memberof": "Decompositions",
+          "scope": "static",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Decompositions",
+              "kind": "class"
+            },
+            {
+              "name": "svd",
+              "kind": "function",
+              "scope": "static"
+            }
+          ],
+          "namespace": "Decompositions.svd"
+        }
+      ]
+    },
+    "path": [
+      {
+        "name": "Decompositions",
+        "kind": "class"
+      }
+    ],
+    "namespace": "Decompositions"
+  },
+  {
+    "description": {
+      "type": "root",
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "value": "A generic dense matrix class holding real number"
+            }
+          ]
+        }
+      ]
+    },
+    "tags": [],
+    "loc": {
+      "start": {
+        "line": 2,
+        "column": 0
+      },
+      "end": {
+        "line": 4,
+        "column": 3
+      }
+    },
+    "context": {
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 410,
+          "column": 1
+        }
+      },
+      "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+    },
+    "augments": [],
+    "examples": [],
+    "implements": [],
+    "params": [
+      {
+        "title": "param",
+        "name": "arg0",
+        "lineNumber": 4,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Number of rows || 1D or 2D array to build matrix from || matrix to be copied"
+                }
+              ]
+            }
+          ]
+        },
+        "type": {
+          "type": "NameExpression",
+          "name": "number"
+        }
+      },
+      {
+        "title": "param",
+        "name": "arg1",
+        "lineNumber": 5,
+        "description": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Number of columns"
+                }
+              ]
+            }
+          ]
+        },
+        "type": {
+          "type": "NameExpression",
+          "name": "number"
+        }
+      }
+    ],
+    "properties": [],
+    "returns": [],
+    "sees": [],
+    "throws": [],
+    "todos": [],
+    "yields": [],
+    "constructorComment": {
+      "description": {
+        "type": "root",
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "start": null,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "checked": null,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Creates a m * n matrix filled with zeros"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "checked": null,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Create a matrix from an array"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "checked": null,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Copy an existing matrix"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "tags": [
+        {
+          "title": "param",
+          "description": "Number of rows || 1D or 2D array to build matrix from || matrix to be copied",
+          "lineNumber": 4,
+          "type": {
+            "type": "NameExpression",
+            "name": "number"
+          },
+          "name": "arg0"
+        },
+        {
+          "title": "param",
+          "description": "Number of columns",
+          "lineNumber": 5,
+          "type": {
+            "type": "NameExpression",
+            "name": "number"
+          },
+          "name": "arg1"
+        },
+        {
+          "title": "example",
+          "description": "const m1 = new eig.Matrix(2, 2);\nconst m2 = new eig.Matrix(2);\nconst m3 = new eig.Matrix([[1, 2], [3, 4]]);\nconst m4 = new eig.Matrix(m2);\nreturn [m1, m2, m3, m4]",
+          "lineNumber": 6
+        }
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 2
+        },
+        "end": {
+          "line": 18,
+          "column": 5
+        }
+      },
+      "context": {
+        "loc": {
+          "start": {
+            "line": 19,
+            "column": 2
+          },
+          "end": {
+            "line": 19,
+            "column": 29
+          }
+        },
+        "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js",
+        "sortKey": "!/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js 00000019",
+        "code": "{\n  /**\n   * - Creates a m * n matrix filled with zeros\n   * - Create a matrix from an array\n   * - Copy an existing matrix\n   * @param {number} arg0 - Number of rows || 1D or 2D array to build matrix from || matrix to be copied\n   * @param {number} arg1 - Number of columns\n   * @example\n   * const m1 = new eig.Matrix(2, 2);\n   * const m2 = new eig.Matrix(2);\n   * const m3 = new eig.Matrix([[1, 2], [3, 4]]);\n   * const m4 = new eig.Matrix(m2);\n   * return [m1, m2, m3, m4]\n   */\n  constructor(arg0, arg1) { }\n\n  /**\n   * Get the number of rows\n   * @returns {number} - The number of rows\n   * @example\n   * const m = new eig.Matrix([1, 2]);\n   * return m.rows();\n   */\n  rows() { }\n\n  /**\n   * Get the number of columns\n   * @returns {number} - The number of columns\n   * @example\n   * const m = new eig.Matrix([1, 2]);\n   * return m.cols();\n   */\n  cols() { }\n\n  /**\n   * Get the value at (i, j)\n   * @param {number} i - Row\n   * @param {number} j - Col\n   * @returns {number} - M[i, j]\n   * @example\n   * const m = new eig.Matrix([[1, 2], [3, 4]]);\n   * return m.get(1, 0);\n   */\n  get(i, j) { }\n\n  /**\n   * Get a vector value at (i)\n   * @param {number} i - Row\n   * @returns {number} - M[i, 0] or M[0, i]\n   * @example\n   * const m = new eig.Matrix([1, 2]);\n   * return m.get(1);\n   */\n  get(i) { }\n\n  /**\n   * Set the value at (i, j)\n   * @param {number} i - Row\n   * @param {number} j - Col\n   * @param {number} val - value\n   * @example\n   * const A = new eig.Matrix(2, 2);\n   * A.set(0, 1, 3 / 2);\n   * return A.get(0, 1);\n   */\n  set(i, j, val) { }\n\n  /**\n   * Set a vector value at (i)\n   * @param {number} i - Row\n   * @param {number} val - value\n   * @example\n   * const A = new eig.Matrix(2);\n   * A.set(1, 3 / 2);\n   * return A.get(1);\n   */\n  set(i, val) { }\n\n  /**\n   * Get a vector length\n   * @warning The matrix must be a vector (either single row or column)\n   * @returns {number} - V.length\n   * @example\n   * return (new eig.Matrix(3)).length();\n   */\n  length() { }\n\n  /**\n   * Take the dot product with another vector\n   * @warning The matrix must be a vector (either single row or column)\n   * @param {Matrix} B - Vector of interest\n   * @returns {number} - V.B\n   * @example\n   * const V = new eig.Matrix([1, 2]);\n   * const B = new eig.Matrix([-1, 3]);\n   * return V.dot(B);\n   */\n  dot(B) { }\n\n\n  /**\n   * Get the l2 (Frobenius) norm\n   * @returns {number} - The l2 norm\n   */\n  norm() { }\n\n  /**\n   * Get the squared l2 (Frobenius) norm\n   * @returns {number} - The l2 norm squared\n   */\n  normSqr() { }\n\n  /**\n   * Get the l1 norm\n   * @returns {number} - The l1 norm\n   */\n  l1Norm() { }\n\n  /**\n   * Get the l-Infinity norm\n   * @returns {number} - The l-Infinity norm\n   * @example\n   * const m = new eig.Matrix([[1, 2], [3, 4]]);\n   * return [m.norm(), m.normSqr(), m.l1Norm(), m.lInfNorm()];\n   */\n  lInfNorm() { }\n\n  /**\n   * Get the rank\n   * @returns {number} - The rank\n   * @example\n   * const m = new eig.Matrix([[2, 1], [2, 1]]);\n   * return m.rank();\n   */\n  rank() { }\n\n  /**\n   * Get the determinant\n   * @return {number} - The determinant\n   * @example\n   * const m = new eig.Matrix([[2, 0], [0, 3]]);\n   * return m.det();\n   */\n  det() { }\n\n  /**\n   * Sum all the elements\n   * @returns {number} - The sum of all the elements\n   * @example\n   * const m = new eig.Matrix([1, 2]);\n   * return m.sum();\n   */\n  sum() { }\n\n  /**\n   * Get a block\n   * @param {number} i - The block top left row\n   * @param {number} j - The block top left column\n   * @param {number} di - Block rows count\n   * @param {number} dj - Block columns count\n   * @returns {Matrix} - The resulting block\n   * @example\n   * const m = new eig.Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);\n   * return m.block(1, 0, 1, 2);\n   */\n  block(i, j, di, dj) { }\n\n  /**\n   * Set a block\n   * @param {number} i - The block top left row\n   * @param {number} j - The block top left column\n   * @param {Matrix} block - Block to be set\n   * @example\n   * const m = new eig.Matrix(3, 3);\n   * const b = new eig.Matrix([[1, 2, 3], [4, 5, 6]]);\n   * m.setBlock(1, 0, b);\n   * return m;\n   */\n  setBlock(i, j, block) { }\n\n  /**\n   * Multiply by a value\n   * @param {number} val - Value to multiply by\n   * @returns {Matrix} - M * val\n   * @example\n   * const m = new eig.Matrix([1, 2]);\n   * return m.mul(2);\n   */\n  mul(val) { }\n\n  /**\n   * Multiply by a value in place\n   * @param {number} val - Value to multiply by\n   * @returns {Matrix} - this (M * val)\n   * @example\n   * const m = new eig.Matrix([1, 2]);\n   * m.mulSelf(2);\n   * return m;\n   */\n  mulSelf(val) { }\n\n  /**\n   * Divide by a value\n   * @param {number} val - Value to divide by\n   * @returns {Matrix} - M / val\n   * @example\n   * const m = new eig.Matrix([2, 4]);\n   * return m.div(2);\n   */\n  div(val) { }\n\n  /**\n   * Divide by a value in place\n   * @param {number} val - Value to divide by\n   * @returns {Matrix} - this (M / val)\n   * @example\n   * const m = new eig.Matrix([2, 4]);\n   * m.divSelf(2);\n   * return m;\n   */\n  divSelf(val) { }\n\n  /**\n   * Add B\n   * @param {Matrix} B - Matrix to be added\n   * @returns {Matrix} M + B\n   * @example\n   * const M = new eig.Matrix([1, 2]);\n   * const B = new eig.Matrix([3, 4]);\n   * return M.matAdd(B);\n   */\n  matAdd(B) { }\n\n  /**\n   * Add B in place\n   * @param {Matrix} B - Matrix to be added\n   * @returns {Matrix} - this\n   * @example\n   * const M = new eig.Matrix([1, 2]);\n   * const B = new eig.Matrix([3, 4]);\n   * M.matAddSelf(B);\n   * return M;\n   */\n  matAddSelf(B) { }\n\n  /**\n   * Substract B\n   * @param {Matrix} B - Matrix to be substracted\n   * @returns {Matrix} - M - B\n   * @example\n   * const M = new eig.Matrix([3, 4]);\n   * const B = new eig.Matrix([1, 2]);\n   * return M.matSub(B);\n   */\n  matSub(B) { }\n\n  /**\n   * Substract B in place\n   * @param {Matrix} B - Matrix to be substracted\n   * @returns {Matrix} - this (M - B)\n   * @example\n   * const M = new eig.Matrix([3, 4]);\n   * const B = new eig.Matrix([1, 2]);\n   * M.matSubSelf(B);\n   * return M;\n   */\n  matSubSelf(B) { }\n\n  /**\n   * Multiply by a matrix B\n   * @param {Matrix} B - Matrix to multiply M by\n   * @returns {Matrix} - M * B\n   * @example\n   * const M = new eig.Matrix([3, 4]);\n   * const B = new eig.Matrix([[1, 2]]);\n   * return M.matMul(B);\n   */\n  matMul(B) { }\n\n  /**\n   * Multiplyby a matrix B in place\n   * @param {Matrix} B - Matrix to multiply M by\n   * @returns {Matrix} - this (M * B)\n   * @example\n   * const M = new eig.Matrix([3, 4]);\n   * const B = new eig.Matrix([[1, 2]]);\n   * M.matMulSelf(B);\n   * return M;\n   */\n  matMulSelf(B) { }\n\n  /**\n   * Concatenate B horizontally\n   * @param {Matrix} B - Matrix to be concatenated\n   * @returns {Matrix} - [M, B]\n   * @example\n   * const M = new eig.Matrix([[1], [2]]);\n   * const B = new eig.Matrix([[3], [4]]);\n   * return M.hcat(B);\n   */\n  hcat(B) { }\n\n  /**\n   * Concatenate B vertically\n   * @param {Matrix} B - Matrix to be concatenated\n   * @returns {Matrix} - [M; B]\n   * @example\n   * const M = new eig.Matrix([[1], [2]]);\n   * const B = new eig.Matrix([[3], [4]]);\n   * return M.vcat(B);\n   */\n  vcat(B) { }\n\n  /**\n   * Get the transpose\n   * @returns {Matrix} - M'\n   * @example\n   * const m = new eig.Matrix([[0, 1], [3, 0]]);\n   * return m.transpose();\n   */\n  tranpose() { }\n\n  /**\n   * Transpose in place\n   * @returns {Matrix} - this (M')\n   * @example\n   * const m = new eig.Matrix([[0, 1], [3, 0]]);\n   * m.transpose();\n   * return m;\n   */\n  transposeSelf() { }\n\n  /**\n   * Get the inverse of a square matrix\n   * The inverse is the matrix Minv such that M * Minv = In\n   * With In the n * n identity matrix\n   * @warning The matrix must be square and invertible (full rank)\n   * @returns {Matrix} - The inverse\n   * @example\n   * const m = new eig.Matrix([[4, 9], [3, 7]]);\n   * return m.inverse();\n   */\n  inverse() { }\n\n  /**\n   * Create a m * n identity matrix\n   * @param {number} m - Rows count\n   * @param {number} n - Columns count\n   * @returns {Matrix} - m * n identity matrix\n   * @example\n   * return eig.Matrix.identity(2, 2);\n   */\n  static identity(m, n) { }\n\n  /**\n   * Create a m * n matrix filled with ones\n   * @param {number} m - Rows count\n   * @param {number} n - Columns count\n   * @returns {Matrix} - m * n matrix filled with ones\n   * @example\n   * return eig.Matrix.ones(2, 3);\n   */\n  static ones(m, n) { }\n\n  /**\n   * Create a m * n matrix filled with some value\n   * @param {number} m - Rows count\n   * @param {number} n - Columns count\n   * @param {number} val - Value to fill the matrix with\n   * @returns {Matrix} - m * n matrix filled with val\n   * @example\n   * return eig.Matrix.constant(2, 3, 3 / 2);\n   */\n  static constant(m, n, val) { }\n\n  /**\n   * Create a m * n random matrix\n   * @param {number} m - Rows count\n   * @param {number} n - Columns count\n   * @returns {Matrix} - m * n random matrix\n   * @example\n   * return eig.Matrix.random(3, 2);\n   */\n  static random(m, n) { }\n\n  /**\n   * Create a diagonal matrix from a vector\n   * @param {Matrix} vec - Vector from which to populate the diagonal\n   * @returns {Matrix} - Diagonal matrix\n   * @example\n   * const vec = new eig.Matrix([1, 2, 3]);\n   * return eig.Matrix.diagonal(vec);\n   */\n  static diagonal(vec) { }\n\n  /**\n   * Create a matrix from an array\n   * A 1D array will create a column vector\n   * A 2D array will create a matrix\n   * @param {Array} arr - 1D or 2D array to build matrix from\n   * @returns {Matrix} - Matrix initialized from the array\n   * @example\n   * return new eig.Matrix([[1, 2], [3, 4]]);\n   */\n  static fromArray(arr) { }\n}"
+      },
+      "augments": [],
+      "errors": [],
+      "examples": [
+        {
+          "description": "const m1 = new eig.Matrix(2, 2);\nconst m2 = new eig.Matrix(2);\nconst m3 = new eig.Matrix([[1, 2], [3, 4]]);\nconst m4 = new eig.Matrix(m2);\nreturn [m1, m2, m3, m4]"
+        }
+      ],
+      "implements": [],
+      "params": [
+        {
+          "title": "param",
+          "name": "arg0",
+          "lineNumber": 4,
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Number of rows || 1D or 2D array to build matrix from || matrix to be copied"
+                  }
+                ]
+              }
+            ]
+          },
+          "type": {
+            "type": "NameExpression",
+            "name": "number"
+          }
+        },
+        {
+          "title": "param",
+          "name": "arg1",
+          "lineNumber": 5,
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Number of columns"
+                  }
+                ]
+              }
+            ]
+          },
+          "type": {
+            "type": "NameExpression",
+            "name": "number"
+          }
+        }
+      ],
+      "properties": [],
+      "returns": [],
+      "sees": [],
+      "throws": [],
+      "todos": [],
+      "yields": []
+    },
+    "name": "Matrix",
+    "kind": "class",
+    "members": {
+      "global": [],
+      "inner": [],
+      "instance": [
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Get the number of rows"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "returns",
+              "description": "The number of rows",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const m = new eig.Matrix([1, 2]);\nreturn m.rows();",
+              "lineNumber": 3
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 21,
+              "column": 2
+            },
+            "end": {
+              "line": 27,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 28,
+                "column": 2
+              },
+              "end": {
+                "line": 28,
+                "column": 12
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const m = new eig.Matrix([1, 2]);\nreturn m.rows();"
+            }
+          ],
+          "implements": [],
+          "params": [],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The number of rows"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "rows",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "rows",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#rows"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Get the number of columns"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "returns",
+              "description": "The number of columns",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const m = new eig.Matrix([1, 2]);\nreturn m.cols();",
+              "lineNumber": 3
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 30,
+              "column": 2
+            },
+            "end": {
+              "line": 36,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 37,
+                "column": 2
+              },
+              "end": {
+                "line": 37,
+                "column": 12
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const m = new eig.Matrix([1, 2]);\nreturn m.cols();"
+            }
+          ],
+          "implements": [],
+          "params": [],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The number of columns"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "cols",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "cols",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#cols"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Get the value at (i, j)"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Row",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "i"
+            },
+            {
+              "title": "param",
+              "description": "Col",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "j"
+            },
+            {
+              "title": "returns",
+              "description": "M[i, j]",
+              "lineNumber": 4,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const m = new eig.Matrix([[1, 2], [3, 4]]);\nreturn m.get(1, 0);",
+              "lineNumber": 5
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 39,
+              "column": 2
+            },
+            "end": {
+              "line": 47,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 48,
+                "column": 2
+              },
+              "end": {
+                "line": 48,
+                "column": 15
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const m = new eig.Matrix([[1, 2], [3, 4]]);\nreturn m.get(1, 0);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "i",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Row"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "param",
+              "name": "j",
+              "lineNumber": 3,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Col"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "M[i, j]"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "get",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "get",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#get"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Get a vector value at (i)"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Row",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "i"
+            },
+            {
+              "title": "returns",
+              "description": "M[i, 0] or M[0, i]",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const m = new eig.Matrix([1, 2]);\nreturn m.get(1);",
+              "lineNumber": 4
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 50,
+              "column": 2
+            },
+            "end": {
+              "line": 57,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 58,
+                "column": 2
+              },
+              "end": {
+                "line": 58,
+                "column": 12
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const m = new eig.Matrix([1, 2]);\nreturn m.get(1);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "i",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Row"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "M[i, 0] or M[0, i]"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "get",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "get",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#get"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Set the value at (i, j)"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Row",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "i"
+            },
+            {
+              "title": "param",
+              "description": "Col",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "j"
+            },
+            {
+              "title": "param",
+              "description": "value",
+              "lineNumber": 4,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "val"
+            },
+            {
+              "title": "example",
+              "description": "const A = new eig.Matrix(2, 2);\nA.set(0, 1, 3 / 2);\nreturn A.get(0, 1);",
+              "lineNumber": 5
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 60,
+              "column": 2
+            },
+            "end": {
+              "line": 69,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 70,
+                "column": 2
+              },
+              "end": {
+                "line": 70,
+                "column": 20
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const A = new eig.Matrix(2, 2);\nA.set(0, 1, 3 / 2);\nreturn A.get(0, 1);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "i",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Row"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "param",
+              "name": "j",
+              "lineNumber": 3,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Col"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "param",
+              "name": "val",
+              "lineNumber": 4,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "set",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "set",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#set"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Set a vector value at (i)"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Row",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "i"
+            },
+            {
+              "title": "param",
+              "description": "value",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "val"
+            },
+            {
+              "title": "example",
+              "description": "const A = new eig.Matrix(2);\nA.set(1, 3 / 2);\nreturn A.get(1);",
+              "lineNumber": 4
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 72,
+              "column": 2
+            },
+            "end": {
+              "line": 80,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 81,
+                "column": 2
+              },
+              "end": {
+                "line": 81,
+                "column": 17
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const A = new eig.Matrix(2);\nA.set(1, 3 / 2);\nreturn A.get(1);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "i",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Row"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "param",
+              "name": "val",
+              "lineNumber": 3,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "set",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "set",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#set"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Get a vector length"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "warning",
+              "description": "The matrix must be a vector (either single row or column)",
+              "lineNumber": 2
+            },
+            {
+              "title": "returns",
+              "description": "V.length",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "example",
+              "description": "return (new eig.Matrix(3)).length();",
+              "lineNumber": 4
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 83,
+              "column": 2
+            },
+            "end": {
+              "line": 89,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 90,
+                "column": 2
+              },
+              "end": {
+                "line": 90,
+                "column": 14
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "return (new eig.Matrix(3)).length();"
+            }
+          ],
+          "implements": [],
+          "params": [],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "V.length"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "length",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "length",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#length"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Take the dot product with another vector"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "warning",
+              "description": "The matrix must be a vector (either single row or column)",
+              "lineNumber": 2
+            },
+            {
+              "title": "param",
+              "description": "Vector of interest",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "B"
+            },
+            {
+              "title": "returns",
+              "description": "V.B",
+              "lineNumber": 4,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const V = new eig.Matrix([1, 2]);\nconst B = new eig.Matrix([-1, 3]);\nreturn V.dot(B);",
+              "lineNumber": 5
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 92,
+              "column": 2
+            },
+            "end": {
+              "line": 101,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 102,
+                "column": 2
+              },
+              "end": {
+                "line": 102,
+                "column": 12
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const V = new eig.Matrix([1, 2]);\nconst B = new eig.Matrix([-1, 3]);\nreturn V.dot(B);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "B",
+              "lineNumber": 3,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Vector of interest"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "V.B"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "dot",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "dot",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#dot"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Get the l2 (Frobenius) norm"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "returns",
+              "description": "The l2 norm",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 105,
+              "column": 2
+            },
+            "end": {
+              "line": 108,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 109,
+                "column": 2
+              },
+              "end": {
+                "line": 109,
+                "column": 12
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [],
+          "implements": [],
+          "params": [],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The l2 norm"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "norm",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "norm",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#norm"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Get the squared l2 (Frobenius) norm"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "returns",
+              "description": "The l2 norm squared",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 111,
+              "column": 2
+            },
+            "end": {
+              "line": 114,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 115,
+                "column": 2
+              },
+              "end": {
+                "line": 115,
+                "column": 15
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [],
+          "implements": [],
+          "params": [],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The l2 norm squared"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "normSqr",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "normSqr",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#normSqr"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Get the l1 norm"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "returns",
+              "description": "The l1 norm",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 117,
+              "column": 2
+            },
+            "end": {
+              "line": 120,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 121,
+                "column": 2
+              },
+              "end": {
+                "line": 121,
+                "column": 14
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [],
+          "implements": [],
+          "params": [],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The l1 norm"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "l1Norm",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "l1Norm",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#l1Norm"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Get the l-Infinity norm"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "returns",
+              "description": "The l-Infinity norm",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const m = new eig.Matrix([[1, 2], [3, 4]]);\nreturn [m.norm(), m.normSqr(), m.l1Norm(), m.lInfNorm()];",
+              "lineNumber": 3
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 123,
+              "column": 2
+            },
+            "end": {
+              "line": 129,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 130,
+                "column": 2
+              },
+              "end": {
+                "line": 130,
+                "column": 16
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const m = new eig.Matrix([[1, 2], [3, 4]]);\nreturn [m.norm(), m.normSqr(), m.l1Norm(), m.lInfNorm()];"
+            }
+          ],
+          "implements": [],
+          "params": [],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The l-Infinity norm"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "lInfNorm",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "lInfNorm",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#lInfNorm"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Get the rank"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "returns",
+              "description": "The rank",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const m = new eig.Matrix([[2, 1], [2, 1]]);\nreturn m.rank();",
+              "lineNumber": 3
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 132,
+              "column": 2
+            },
+            "end": {
+              "line": 138,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 139,
+                "column": 2
+              },
+              "end": {
+                "line": 139,
+                "column": 12
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const m = new eig.Matrix([[2, 1], [2, 1]]);\nreturn m.rank();"
+            }
+          ],
+          "implements": [],
+          "params": [],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The rank"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "rank",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "rank",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#rank"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Get the determinant"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "return",
+              "description": "The determinant",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const m = new eig.Matrix([[2, 0], [0, 3]]);\nreturn m.det();",
+              "lineNumber": 3
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 141,
+              "column": 2
+            },
+            "end": {
+              "line": 147,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 148,
+                "column": 2
+              },
+              "end": {
+                "line": 148,
+                "column": 11
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const m = new eig.Matrix([[2, 0], [0, 3]]);\nreturn m.det();"
+            }
+          ],
+          "implements": [],
+          "params": [],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The determinant"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "det",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "det",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#det"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Sum all the elements"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "returns",
+              "description": "The sum of all the elements",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const m = new eig.Matrix([1, 2]);\nreturn m.sum();",
+              "lineNumber": 3
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 150,
+              "column": 2
+            },
+            "end": {
+              "line": 156,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 157,
+                "column": 2
+              },
+              "end": {
+                "line": 157,
+                "column": 11
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const m = new eig.Matrix([1, 2]);\nreturn m.sum();"
+            }
+          ],
+          "implements": [],
+          "params": [],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The sum of all the elements"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "sum",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "sum",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#sum"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Get a block"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "The block top left row",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "i"
+            },
+            {
+              "title": "param",
+              "description": "The block top left column",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "j"
+            },
+            {
+              "title": "param",
+              "description": "Block rows count",
+              "lineNumber": 4,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "di"
+            },
+            {
+              "title": "param",
+              "description": "Block columns count",
+              "lineNumber": 5,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "dj"
+            },
+            {
+              "title": "returns",
+              "description": "The resulting block",
+              "lineNumber": 6,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const m = new eig.Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);\nreturn m.block(1, 0, 1, 2);",
+              "lineNumber": 7
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 159,
+              "column": 2
+            },
+            "end": {
+              "line": 169,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 170,
+                "column": 2
+              },
+              "end": {
+                "line": 170,
+                "column": 25
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const m = new eig.Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);\nreturn m.block(1, 0, 1, 2);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "i",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The block top left row"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "param",
+              "name": "j",
+              "lineNumber": 3,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The block top left column"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "param",
+              "name": "di",
+              "lineNumber": 4,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Block rows count"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "param",
+              "name": "dj",
+              "lineNumber": 5,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Block columns count"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The resulting block"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "block",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "block",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#block"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Set a block"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "The block top left row",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "i"
+            },
+            {
+              "title": "param",
+              "description": "The block top left column",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "j"
+            },
+            {
+              "title": "param",
+              "description": "Block to be set",
+              "lineNumber": 4,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "block"
+            },
+            {
+              "title": "example",
+              "description": "const m = new eig.Matrix(3, 3);\nconst b = new eig.Matrix([[1, 2, 3], [4, 5, 6]]);\nm.setBlock(1, 0, b);\nreturn m;",
+              "lineNumber": 5
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 172,
+              "column": 2
+            },
+            "end": {
+              "line": 182,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 183,
+                "column": 2
+              },
+              "end": {
+                "line": 183,
+                "column": 27
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const m = new eig.Matrix(3, 3);\nconst b = new eig.Matrix([[1, 2, 3], [4, 5, 6]]);\nm.setBlock(1, 0, b);\nreturn m;"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "i",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The block top left row"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "param",
+              "name": "j",
+              "lineNumber": 3,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The block top left column"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "param",
+              "name": "block",
+              "lineNumber": 4,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Block to be set"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "setBlock",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "setBlock",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#setBlock"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Multiply by a value"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Value to multiply by",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "val"
+            },
+            {
+              "title": "returns",
+              "description": "M * val",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const m = new eig.Matrix([1, 2]);\nreturn m.mul(2);",
+              "lineNumber": 4
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 185,
+              "column": 2
+            },
+            "end": {
+              "line": 192,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 193,
+                "column": 2
+              },
+              "end": {
+                "line": 193,
+                "column": 14
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const m = new eig.Matrix([1, 2]);\nreturn m.mul(2);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "val",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value to multiply by"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "M * val"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "mul",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "mul",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#mul"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Multiply by a value in place"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Value to multiply by",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "val"
+            },
+            {
+              "title": "returns",
+              "description": "this (M * val)",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const m = new eig.Matrix([1, 2]);\nm.mulSelf(2);\nreturn m;",
+              "lineNumber": 4
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 195,
+              "column": 2
+            },
+            "end": {
+              "line": 203,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 204,
+                "column": 2
+              },
+              "end": {
+                "line": 204,
+                "column": 18
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const m = new eig.Matrix([1, 2]);\nm.mulSelf(2);\nreturn m;"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "val",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value to multiply by"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "this (M * val)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "mulSelf",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "mulSelf",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#mulSelf"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Divide by a value"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Value to divide by",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "val"
+            },
+            {
+              "title": "returns",
+              "description": "M / val",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const m = new eig.Matrix([2, 4]);\nreturn m.div(2);",
+              "lineNumber": 4
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 206,
+              "column": 2
+            },
+            "end": {
+              "line": 213,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 214,
+                "column": 2
+              },
+              "end": {
+                "line": 214,
+                "column": 14
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const m = new eig.Matrix([2, 4]);\nreturn m.div(2);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "val",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value to divide by"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "M / val"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "div",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "div",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#div"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Divide by a value in place"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Value to divide by",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "val"
+            },
+            {
+              "title": "returns",
+              "description": "this (M / val)",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const m = new eig.Matrix([2, 4]);\nm.divSelf(2);\nreturn m;",
+              "lineNumber": 4
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 216,
+              "column": 2
+            },
+            "end": {
+              "line": 224,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 225,
+                "column": 2
+              },
+              "end": {
+                "line": 225,
+                "column": 18
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const m = new eig.Matrix([2, 4]);\nm.divSelf(2);\nreturn m;"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "val",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value to divide by"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "this (M / val)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "divSelf",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "divSelf",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#divSelf"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Add B"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Matrix to be added",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "B"
+            },
+            {
+              "title": "returns",
+              "description": "M + B",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const M = new eig.Matrix([1, 2]);\nconst B = new eig.Matrix([3, 4]);\nreturn M.matAdd(B);",
+              "lineNumber": 4
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 227,
+              "column": 2
+            },
+            "end": {
+              "line": 235,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 236,
+                "column": 2
+              },
+              "end": {
+                "line": 236,
+                "column": 15
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const M = new eig.Matrix([1, 2]);\nconst B = new eig.Matrix([3, 4]);\nreturn M.matAdd(B);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "B",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Matrix to be added"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "M + B"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "matAdd",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "matAdd",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#matAdd"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Add B in place"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Matrix to be added",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "B"
+            },
+            {
+              "title": "returns",
+              "description": "this",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const M = new eig.Matrix([1, 2]);\nconst B = new eig.Matrix([3, 4]);\nM.matAddSelf(B);\nreturn M;",
+              "lineNumber": 4
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 238,
+              "column": 2
+            },
+            "end": {
+              "line": 247,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 248,
+                "column": 2
+              },
+              "end": {
+                "line": 248,
+                "column": 19
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const M = new eig.Matrix([1, 2]);\nconst B = new eig.Matrix([3, 4]);\nM.matAddSelf(B);\nreturn M;"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "B",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Matrix to be added"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "this"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "matAddSelf",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "matAddSelf",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#matAddSelf"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Substract B"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Matrix to be substracted",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "B"
+            },
+            {
+              "title": "returns",
+              "description": "M - B",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const M = new eig.Matrix([3, 4]);\nconst B = new eig.Matrix([1, 2]);\nreturn M.matSub(B);",
+              "lineNumber": 4
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 250,
+              "column": 2
+            },
+            "end": {
+              "line": 258,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 259,
+                "column": 2
+              },
+              "end": {
+                "line": 259,
+                "column": 15
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const M = new eig.Matrix([3, 4]);\nconst B = new eig.Matrix([1, 2]);\nreturn M.matSub(B);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "B",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Matrix to be substracted"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "M - B"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "matSub",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "matSub",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#matSub"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Substract B in place"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Matrix to be substracted",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "B"
+            },
+            {
+              "title": "returns",
+              "description": "this (M - B)",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const M = new eig.Matrix([3, 4]);\nconst B = new eig.Matrix([1, 2]);\nM.matSubSelf(B);\nreturn M;",
+              "lineNumber": 4
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 261,
+              "column": 2
+            },
+            "end": {
+              "line": 270,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 271,
+                "column": 2
+              },
+              "end": {
+                "line": 271,
+                "column": 19
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const M = new eig.Matrix([3, 4]);\nconst B = new eig.Matrix([1, 2]);\nM.matSubSelf(B);\nreturn M;"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "B",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Matrix to be substracted"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "this (M - B)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "matSubSelf",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "matSubSelf",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#matSubSelf"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Multiply by a matrix B"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Matrix to multiply M by",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "B"
+            },
+            {
+              "title": "returns",
+              "description": "M * B",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const M = new eig.Matrix([3, 4]);\nconst B = new eig.Matrix([[1, 2]]);\nreturn M.matMul(B);",
+              "lineNumber": 4
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 273,
+              "column": 2
+            },
+            "end": {
+              "line": 281,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 282,
+                "column": 2
+              },
+              "end": {
+                "line": 282,
+                "column": 15
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const M = new eig.Matrix([3, 4]);\nconst B = new eig.Matrix([[1, 2]]);\nreturn M.matMul(B);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "B",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Matrix to multiply M by"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "M * B"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "matMul",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "matMul",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#matMul"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Multiplyby a matrix B in place"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Matrix to multiply M by",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "B"
+            },
+            {
+              "title": "returns",
+              "description": "this (M * B)",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const M = new eig.Matrix([3, 4]);\nconst B = new eig.Matrix([[1, 2]]);\nM.matMulSelf(B);\nreturn M;",
+              "lineNumber": 4
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 284,
+              "column": 2
+            },
+            "end": {
+              "line": 293,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 294,
+                "column": 2
+              },
+              "end": {
+                "line": 294,
+                "column": 19
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const M = new eig.Matrix([3, 4]);\nconst B = new eig.Matrix([[1, 2]]);\nM.matMulSelf(B);\nreturn M;"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "B",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Matrix to multiply M by"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "this (M * B)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "matMulSelf",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "matMulSelf",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#matMulSelf"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Concatenate B horizontally"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Matrix to be concatenated",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "B"
+            },
+            {
+              "title": "returns",
+              "description": "[M, B]",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const M = new eig.Matrix([[1], [2]]);\nconst B = new eig.Matrix([[3], [4]]);\nreturn M.hcat(B);",
+              "lineNumber": 4
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 296,
+              "column": 2
+            },
+            "end": {
+              "line": 304,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 305,
+                "column": 2
+              },
+              "end": {
+                "line": 305,
+                "column": 13
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const M = new eig.Matrix([[1], [2]]);\nconst B = new eig.Matrix([[3], [4]]);\nreturn M.hcat(B);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "B",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Matrix to be concatenated"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "[M, B]"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "hcat",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "hcat",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#hcat"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Concatenate B vertically"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Matrix to be concatenated",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "B"
+            },
+            {
+              "title": "returns",
+              "description": "[M; B]",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const M = new eig.Matrix([[1], [2]]);\nconst B = new eig.Matrix([[3], [4]]);\nreturn M.vcat(B);",
+              "lineNumber": 4
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 307,
+              "column": 2
+            },
+            "end": {
+              "line": 315,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 316,
+                "column": 2
+              },
+              "end": {
+                "line": 316,
+                "column": 13
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const M = new eig.Matrix([[1], [2]]);\nconst B = new eig.Matrix([[3], [4]]);\nreturn M.vcat(B);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "B",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Matrix to be concatenated"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "[M; B]"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "vcat",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "vcat",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#vcat"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Get the transpose"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "returns",
+              "description": "M'",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const m = new eig.Matrix([[0, 1], [3, 0]]);\nreturn m.transpose();",
+              "lineNumber": 3
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 318,
+              "column": 2
+            },
+            "end": {
+              "line": 324,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 325,
+                "column": 2
+              },
+              "end": {
+                "line": 325,
+                "column": 16
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const m = new eig.Matrix([[0, 1], [3, 0]]);\nreturn m.transpose();"
+            }
+          ],
+          "implements": [],
+          "params": [],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "M'"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "tranpose",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "tranpose",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#tranpose"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Transpose in place"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "returns",
+              "description": "this (M')",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const m = new eig.Matrix([[0, 1], [3, 0]]);\nm.transpose();\nreturn m;",
+              "lineNumber": 3
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 327,
+              "column": 2
+            },
+            "end": {
+              "line": 334,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 335,
+                "column": 2
+              },
+              "end": {
+                "line": 335,
+                "column": 21
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const m = new eig.Matrix([[0, 1], [3, 0]]);\nm.transpose();\nreturn m;"
+            }
+          ],
+          "implements": [],
+          "params": [],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "this (M')"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "transposeSelf",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "transposeSelf",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#transposeSelf"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Get the inverse of a square matrix\nThe inverse is the matrix Minv such that M * Minv = In\nWith In the n * n identity matrix"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "warning",
+              "description": "The matrix must be square and invertible (full rank)",
+              "lineNumber": 4
+            },
+            {
+              "title": "returns",
+              "description": "The inverse",
+              "lineNumber": 5,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const m = new eig.Matrix([[4, 9], [3, 7]]);\nreturn m.inverse();",
+              "lineNumber": 6
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 337,
+              "column": 2
+            },
+            "end": {
+              "line": 346,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 347,
+                "column": 2
+              },
+              "end": {
+                "line": 347,
+                "column": 15
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const m = new eig.Matrix([[4, 9], [3, 7]]);\nreturn m.inverse();"
+            }
+          ],
+          "implements": [],
+          "params": [],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The inverse"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "inverse",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "instance",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "inverse",
+              "kind": "function",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "Matrix#inverse"
+        }
+      ],
+      "events": [],
+      "static": [
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Create a m * n identity matrix"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Rows count",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "m"
+            },
+            {
+              "title": "param",
+              "description": "Columns count",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "n"
+            },
+            {
+              "title": "returns",
+              "description": "m * n identity matrix",
+              "lineNumber": 4,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "return eig.Matrix.identity(2, 2);",
+              "lineNumber": 5
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 349,
+              "column": 2
+            },
+            "end": {
+              "line": 356,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 357,
+                "column": 2
+              },
+              "end": {
+                "line": 357,
+                "column": 27
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "return eig.Matrix.identity(2, 2);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "m",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rows count"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "param",
+              "name": "n",
+              "lineNumber": 3,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Columns count"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "m * n identity matrix"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "identity",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "static",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "identity",
+              "kind": "function",
+              "scope": "static"
+            }
+          ],
+          "namespace": "Matrix.identity"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Create a m * n matrix filled with ones"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Rows count",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "m"
+            },
+            {
+              "title": "param",
+              "description": "Columns count",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "n"
+            },
+            {
+              "title": "returns",
+              "description": "m * n matrix filled with ones",
+              "lineNumber": 4,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "return eig.Matrix.ones(2, 3);",
+              "lineNumber": 5
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 359,
+              "column": 2
+            },
+            "end": {
+              "line": 366,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 367,
+                "column": 2
+              },
+              "end": {
+                "line": 367,
+                "column": 23
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "return eig.Matrix.ones(2, 3);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "m",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rows count"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "param",
+              "name": "n",
+              "lineNumber": 3,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Columns count"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "m * n matrix filled with ones"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "ones",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "static",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "ones",
+              "kind": "function",
+              "scope": "static"
+            }
+          ],
+          "namespace": "Matrix.ones"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Create a m * n matrix filled with some value"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Rows count",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "m"
+            },
+            {
+              "title": "param",
+              "description": "Columns count",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "n"
+            },
+            {
+              "title": "param",
+              "description": "Value to fill the matrix with",
+              "lineNumber": 4,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "val"
+            },
+            {
+              "title": "returns",
+              "description": "m * n matrix filled with val",
+              "lineNumber": 5,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "return eig.Matrix.constant(2, 3, 3 / 2);",
+              "lineNumber": 6
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 369,
+              "column": 2
+            },
+            "end": {
+              "line": 377,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 378,
+                "column": 2
+              },
+              "end": {
+                "line": 378,
+                "column": 32
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "return eig.Matrix.constant(2, 3, 3 / 2);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "m",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rows count"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "param",
+              "name": "n",
+              "lineNumber": 3,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Columns count"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "param",
+              "name": "val",
+              "lineNumber": 4,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value to fill the matrix with"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "m * n matrix filled with val"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "constant",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "static",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "constant",
+              "kind": "function",
+              "scope": "static"
+            }
+          ],
+          "namespace": "Matrix.constant"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Create a m * n random matrix"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Rows count",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "m"
+            },
+            {
+              "title": "param",
+              "description": "Columns count",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              "name": "n"
+            },
+            {
+              "title": "returns",
+              "description": "m * n random matrix",
+              "lineNumber": 4,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "return eig.Matrix.random(3, 2);",
+              "lineNumber": 5
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 380,
+              "column": 2
+            },
+            "end": {
+              "line": 387,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 388,
+                "column": 2
+              },
+              "end": {
+                "line": 388,
+                "column": 25
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "return eig.Matrix.random(3, 2);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "m",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rows count"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            },
+            {
+              "title": "param",
+              "name": "n",
+              "lineNumber": 3,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Columns count"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "number"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "m * n random matrix"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "random",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "static",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "random",
+              "kind": "function",
+              "scope": "static"
+            }
+          ],
+          "namespace": "Matrix.random"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Create a diagonal matrix from a vector"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Vector from which to populate the diagonal",
+              "lineNumber": 2,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "vec"
+            },
+            {
+              "title": "returns",
+              "description": "Diagonal matrix",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const vec = new eig.Matrix([1, 2, 3]);\nreturn eig.Matrix.diagonal(vec);",
+              "lineNumber": 4
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 390,
+              "column": 2
+            },
+            "end": {
+              "line": 397,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 398,
+                "column": 2
+              },
+              "end": {
+                "line": 398,
+                "column": 26
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const vec = new eig.Matrix([1, 2, 3]);\nreturn eig.Matrix.diagonal(vec);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "vec",
+              "lineNumber": 2,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Vector from which to populate the diagonal"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Diagonal matrix"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "diagonal",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "static",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "diagonal",
+              "kind": "function",
+              "scope": "static"
+            }
+          ],
+          "namespace": "Matrix.diagonal"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Create a matrix from an array\nA 1D array will create a column vector\nA 2D array will create a matrix"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "1D or 2D array to build matrix from",
+              "lineNumber": 4,
+              "type": {
+                "type": "NameExpression",
+                "name": "Array"
+              },
+              "name": "arr"
+            },
+            {
+              "title": "returns",
+              "description": "Matrix initialized from the array",
+              "lineNumber": 5,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "example",
+              "description": "return new eig.Matrix([[1, 2], [3, 4]]);",
+              "lineNumber": 6
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 400,
+              "column": 2
+            },
+            "end": {
+              "line": 408,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 409,
+                "column": 2
+              },
+              "end": {
+                "line": 409,
+                "column": 27
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Matrix.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "return new eig.Matrix([[1, 2], [3, 4]]);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "arr",
+              "lineNumber": 4,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "1D or 2D array to build matrix from"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Array"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Matrix initialized from the array"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "fromArray",
+          "kind": "function",
+          "memberof": "Matrix",
+          "scope": "static",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Matrix",
+              "kind": "class"
+            },
+            {
+              "name": "fromArray",
+              "kind": "function",
+              "scope": "static"
+            }
+          ],
+          "namespace": "Matrix.fromArray"
+        }
+      ]
+    },
+    "path": [
+      {
+        "name": "Matrix",
+        "kind": "class"
+      }
+    ],
+    "namespace": "Matrix"
+  },
+  {
+    "description": {
+      "type": "root",
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "value": "A class containing a few useful solver utilities"
+            }
+          ]
+        }
+      ]
+    },
+    "tags": [],
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 3,
+        "column": 3
+      }
+    },
+    "context": {
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 75,
+          "column": 1
+        }
+      },
+      "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Solvers.js"
+    },
+    "augments": [],
+    "examples": [],
+    "implements": [],
+    "params": [],
+    "properties": [],
+    "returns": [],
+    "sees": [],
+    "throws": [],
+    "todos": [],
+    "yields": [],
+    "name": "Solvers",
+    "kind": "class",
+    "members": {
+      "global": [],
+      "inner": [],
+      "instance": [],
+      "events": [],
+      "static": [
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Find the eigenvalues of a given matrix\nOptionally, compute a set of normalized eigenvectors"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "Matrix of interest",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "M"
+            },
+            {
+              "title": "param",
+              "description": "Whether to compute eigenvectors",
+              "lineNumber": 4,
+              "type": {
+                "type": "NameExpression",
+                "name": "boolean"
+              },
+              "name": "computeEigenvectors"
+            },
+            {
+              "title": "returns",
+              "description": "Result of the solver",
+              "lineNumber": 5,
+              "type": {
+                "type": "NameExpression",
+                "name": "EigenSolverResult"
+              }
+            },
+            {
+              "title": "example",
+              "description": "const M = new eig.Matrix([[8, 3], [2, 7]]);\nconst result = eig.Solvers.eigenSolve(M, true);\ndelete result.info\nreturn result",
+              "lineNumber": 6
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 2
+            },
+            "end": {
+              "line": 16,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 17,
+                "column": 2
+              },
+              "end": {
+                "line": 17,
+                "column": 47
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Solvers.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const M = new eig.Matrix([[8, 3], [2, 7]]);\nconst result = eig.Solvers.eigenSolve(M, true);\ndelete result.info\nreturn result"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "M",
+              "lineNumber": 3,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Matrix of interest"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "param",
+              "name": "computeEigenvectors",
+              "lineNumber": 4,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Whether to compute eigenvectors"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "boolean"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Result of the solver"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "EigenSolverResult"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "eigenSolve",
+          "kind": "function",
+          "memberof": "Solvers",
+          "scope": "static",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Solvers",
+              "kind": "class"
+            },
+            {
+              "name": "eigenSolve",
+              "kind": "function",
+              "scope": "static"
+            }
+          ],
+          "namespace": "Solvers.eigenSolve"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Solve a continuous time algebraic Riccati equation of the form\nA' P + P A - P B Rinv B' P + Q = 0"
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "param",
+              "description": "State matrix",
+              "lineNumber": 3,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "A"
+            },
+            {
+              "title": "param",
+              "description": "Input matrix",
+              "lineNumber": 4,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "B"
+            },
+            {
+              "title": "param",
+              "description": "Quadratic state cost matrix",
+              "lineNumber": 5,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "Q"
+            },
+            {
+              "title": "param",
+              "description": "Quadratic input cost matrix",
+              "lineNumber": 6,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "R"
+            },
+            {
+              "title": "returns",
+              "description": "Result of the solver",
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "CareSolverResult"
+              }
+            },
+            {
+              "title": "example",
+              "description": "// Finds the optimal linear quadratic regulator controller of an inverted pendulum \n// The state-space dynamic of the pendulum linearized about the upside down state is\n// xDot = A*x + B*u\n// With x = [theta, thetaDot]\n// And dThetaDot/dt = -(m*g*l*sin(theta) + u)/ml^2\n// Here, we take m = 1, l = 1, g = 10\nconst A = new eig.Matrix([[0, 1], [-10, 0]])\nconst B = new eig.Matrix([0, 1])\nconst Q = eig.Matrix.identity(2, 2).mul(10)\nconst R = eig.Matrix.identity(1, 1)\n\n// Solve the CARE equation\nconst result = eig.Solvers.careSolve(A, B, Q, R)\ndelete result.info\nreturn result",
+              "lineNumber": 8
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 19,
+              "column": 2
+            },
+            "end": {
+              "line": 43,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 44,
+                "column": 2
+              },
+              "end": {
+                "line": 44,
+                "column": 34
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Solvers.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "// Finds the optimal linear quadratic regulator controller of an inverted pendulum \n// The state-space dynamic of the pendulum linearized about the upside down state is\n// xDot = A*x + B*u\n// With x = [theta, thetaDot]\n// And dThetaDot/dt = -(m*g*l*sin(theta) + u)/ml^2\n// Here, we take m = 1, l = 1, g = 10\nconst A = new eig.Matrix([[0, 1], [-10, 0]])\nconst B = new eig.Matrix([0, 1])\nconst Q = eig.Matrix.identity(2, 2).mul(10)\nconst R = eig.Matrix.identity(1, 1)\n\n// Solve the CARE equation\nconst result = eig.Solvers.careSolve(A, B, Q, R)\ndelete result.info\nreturn result"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "A",
+              "lineNumber": 3,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "State matrix"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "param",
+              "name": "B",
+              "lineNumber": 4,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Input matrix"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "param",
+              "name": "Q",
+              "lineNumber": 5,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Quadratic state cost matrix"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "param",
+              "name": "R",
+              "lineNumber": 6,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Quadratic input cost matrix"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Result of the solver"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "CareSolverResult"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "careSolve",
+          "kind": "function",
+          "memberof": "Solvers",
+          "scope": "static",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Solvers",
+              "kind": "class"
+            },
+            {
+              "name": "careSolve",
+              "kind": "function",
+              "scope": "static"
+            }
+          ],
+          "namespace": "Solvers.careSolve"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Solve quadratic program of the form\nMin 0.5 x' P x + q' x\nSuject to l <= Ax <= u\nUsing operator splitting quadratic programming "
+                  },
+                  {
+                    "type": "link",
+                    "title": null,
+                    "url": "https://osqp.org/docs/",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "https://osqp.org/docs/"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "tags": [
+            {
+              "title": "warning",
+              "description": "The problem needs to be convex",
+              "lineNumber": 5
+            },
+            {
+              "title": "param",
+              "description": "Quadratic cost matrix",
+              "lineNumber": 6,
+              "type": {
+                "type": "NameExpression",
+                "name": "SparseMatrix"
+              },
+              "name": "P"
+            },
+            {
+              "title": "param",
+              "description": "Linear cost vector",
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "q"
+            },
+            {
+              "title": "param",
+              "description": "Linear constraint matrix",
+              "lineNumber": 8,
+              "type": {
+                "type": "NameExpression",
+                "name": "SparseMatrix"
+              },
+              "name": "A"
+            },
+            {
+              "title": "param",
+              "description": "Linear constraint lower bound",
+              "lineNumber": 9,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "l"
+            },
+            {
+              "title": "param",
+              "description": "Linear constraint upper bound",
+              "lineNumber": 10,
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              },
+              "name": "u"
+            },
+            {
+              "title": "example",
+              "description": "// Let's minimize 0.5 x' P x + q' x\n// Suject to l <= Ax <= u\n// With P = [[4, 1], [0, 2]]; q = [1, 1]\n// And A = [[1, 1], [1, 0], [0, 1]] \n// l = [1, 0, 0]; u = [1, 0.7, 0.7];\nconst P = eig.SparseMatrix.fromTriplets(2, 2, [\n [0, 0, 4], [0, 1, 1], [1, 1, 2]\n]);\nconst A = eig.SparseMatrix.fromTriplets(3, 2, [\n [0, 0, 1], [0, 1, 1], [1, 0, 1], [2, 1, 1]\n]);\nconst q = new eig.Matrix([1, 1])\nconst l = new eig.Matrix([1, 0, 0])\nconst u = new eig.Matrix([1, 0.7, 0.7])\nreturn eig.Solvers.quadProgSolve(P, q, A, l, u);",
+              "lineNumber": 11
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 46,
+              "column": 2
+            },
+            "end": {
+              "line": 73,
+              "column": 5
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 74,
+                "column": 2
+              },
+              "end": {
+                "line": 74,
+                "column": 41
+              }
+            },
+            "file": "/Users/bbevillard/Documents/Bev/Code/Web/eigen-js/src/classes/Solvers.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "// Let's minimize 0.5 x' P x + q' x\n// Suject to l <= Ax <= u\n// With P = [[4, 1], [0, 2]]; q = [1, 1]\n// And A = [[1, 1], [1, 0], [0, 1]] \n// l = [1, 0, 0]; u = [1, 0.7, 0.7];\nconst P = eig.SparseMatrix.fromTriplets(2, 2, [\n [0, 0, 4], [0, 1, 1], [1, 1, 2]\n]);\nconst A = eig.SparseMatrix.fromTriplets(3, 2, [\n [0, 0, 1], [0, 1, 1], [1, 0, 1], [2, 1, 1]\n]);\nconst q = new eig.Matrix([1, 1])\nconst l = new eig.Matrix([1, 0, 0])\nconst u = new eig.Matrix([1, 0.7, 0.7])\nreturn eig.Solvers.quadProgSolve(P, q, A, l, u);"
+            }
+          ],
+          "implements": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "P",
+              "lineNumber": 6,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Quadratic cost matrix"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "SparseMatrix"
+              }
+            },
+            {
+              "title": "param",
+              "name": "q",
+              "lineNumber": 7,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Linear cost vector"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "param",
+              "name": "A",
+              "lineNumber": 8,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Linear constraint matrix"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "SparseMatrix"
+              }
+            },
+            {
+              "title": "param",
+              "name": "l",
+              "lineNumber": 9,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Linear constraint lower bound"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            },
+            {
+              "title": "param",
+              "name": "u",
+              "lineNumber": 10,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Linear constraint upper bound"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Matrix"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "yields": [],
+          "name": "quadProgSolve",
+          "kind": "function",
+          "memberof": "Solvers",
+          "scope": "static",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Solvers",
+              "kind": "class"
+            },
+            {
+              "name": "quadProgSolve",
+              "kind": "function",
+              "scope": "static"
+            }
+          ],
+          "namespace": "Solvers.quadProgSolve"
+        }
+      ]
+    },
+    "path": [
+      {
+        "name": "Solvers",
+        "kind": "class"
+      }
+    ],
+    "namespace": "Solvers"
+  }
+];
