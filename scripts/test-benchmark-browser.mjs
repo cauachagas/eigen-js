@@ -109,7 +109,27 @@ try {
   console.log('\n--- SVD Benchmark Results ---');
   svdResults.forEach(r => console.log(`  ${r.library}: ${r.result}`));
 
-  // 6. Capture screenshot
+  // 6. Click RUN ALL on Sparse Linear System (A * x = b)
+  console.log('\nRunning RUN ALL on Sparse Linear System (A * x = b)...');
+  await page.click('#runAll_sparse_solve');
+  await page.waitForFunction(() => {
+    const btn = document.querySelector('#runAll_sparse_solve');
+    return btn && !btn.disabled && !btn.textContent.includes('Running');
+  }, { timeout: 30000 });
+
+  const sparseResults = await page.evaluate(() => {
+    const cells = Array.from(document.querySelectorAll('#card_sparse_solve .results-table td'));
+    const headers = Array.from(document.querySelectorAll('#card_sparse_solve .results-table th'));
+    return headers.map((h, i) => ({
+      library: h.textContent.trim(),
+      result: cells[i]?.textContent.trim()
+    }));
+  });
+
+  console.log('\n--- Sparse Linear System Benchmark Results ---');
+  sparseResults.forEach(r => console.log(`  ${r.library}: ${r.result}`));
+
+  // 7. Capture screenshot
   const screenshotPath = path.join(artifactDir, 'benchmark_screenshot.png');
   await page.screenshot({ path: screenshotPath, fullPage: true });
   console.log(`\nScreenshot saved to: ${screenshotPath}`);

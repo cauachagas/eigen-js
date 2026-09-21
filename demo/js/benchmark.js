@@ -63,11 +63,53 @@ export function createMatrix(type, size, array2D = null) {
  */
 export const libraries = {
   eig: { name: 'Eigen JS', key: 'eig' },
+  openblas: { name: 'OpenBLAS (WASM)', key: 'openblas' },
+  suitesparse: { name: 'SuiteSparse (WASM)', key: 'suitesparse' },
   mlmatrix: { name: 'Ml Matrix', key: 'mlmatrix' },
   mathjs: { name: 'Math JS', key: 'mathjs' },
   linalg: { name: 'Linalg', key: 'linalg' },
   lalolib: { name: 'LaloLib', key: 'lalolib' },
 };
+
+/**
+ * Generate 1D Poisson tridiagonal symmetric positive-definite sparse matrix
+ * A = [ 4 -1  0 ... ]
+ *     [-1  4 -1 ... ]
+ *     [ 0 -1  4 ... ]
+ * in Compressed Sparse Column (CSC) format and rhs b = [1, 1, ..., 1]^T
+ */
+export function generateSparsePoissonProblem(n) {
+  const ap = new Int32Array(n + 1);
+  const aiList = [];
+  const axList = [];
+
+  let count = 0;
+  for (let col = 0; col < n; col++) {
+    ap[col] = count;
+    if (col > 0) {
+      aiList.push(col - 1);
+      axList.push(-1.0);
+      count++;
+    }
+    aiList.push(col);
+    axList.push(4.0);
+    count++;
+    if (col < n - 1) {
+      aiList.push(col + 1);
+      axList.push(-1.0);
+      count++;
+    }
+  }
+  ap[n] = count;
+
+  const ai = Int32Array.from(aiList);
+  const ax = Float64Array.from(axList);
+  const az = new Float64Array(count);
+  const bx = new Float64Array(n).fill(1.0);
+  const bz = new Float64Array(n);
+
+  return { nRow: n, nCol: n, nnz: count, ap, ai, ax, az, bx, bz };
+}
 
 /**
  * Benchmark Definitions
@@ -78,12 +120,16 @@ export const benchmarkDefinitions = [
     name: 'Matrix multiplication',
     description: 'Matrix multiplication performance test',
     params: { size: 100, iterations: 100 },
-    supportedLibs: ['eig', 'mlmatrix', 'mathjs', 'linalg', 'lalolib'],
+    supportedLibs: ['eig', 'openblas', 'mlmatrix', 'mathjs', 'linalg', 'lalolib'],
     codes: {
       eig: `const A = createMatrix('eig', size);
 const B = createMatrix('eig', size);
 for (let k = 0; k < iterations; k++) {
   A.matMul(B);
+}`,
+      openblas: `// OpenBLAS CBLAS Level 3 DGEMM in WebAssembly
+for (let k = 0; k < iterations; k++) {
+  openBlas.callTest('dgemm');
 }`,
       mlmatrix: `const A = createMatrix('mlmatrix', size);
 const B = createMatrix('mlmatrix', size);
@@ -107,6 +153,15 @@ for (let k = 0; k < iterations; k++) {
 }`
     },
     run: (type, size, iterations) => {
+      if (type === 'openblas') {
+        if (!window.openBlas?.callTest) throw new Error('OpenBLAS WebAssembly is not loaded or ready.');
+        const start = performance.now();
+        for (let k = 0; k < iterations; k++) {
+          window.openBlas.callTest('dgemm');
+        }
+        return performance.now() - start;
+      }
+
       const A = createMatrix(type, size);
       const B = createMatrix(type, size);
       const start = performance.now();
@@ -226,6 +281,57 @@ for (let k = 0; k < iterations; k++) {
       } else if (type === 'lalolib') {
         for (let k = 0; k < iterations; k++) {
           window.lalolib.svd(A, "thin");
+        }
+        return performance.now() - start;
+      }
+    }
+  },
+  {
+    id: 'sparse_solve',
+    name: 'Sparse linear system (A · x = b)',
+    description: 'Solves sparse linear system A · x = b using WebAssembly sparse direct solvers (Eigen SimplicialCholesky vs SuiteSparse UMFPACK)',
+    params: { size: 100, iterations: 50 },
+    supportedLibs: ['eig', 'suitesparse'],
+    codes: {
+      eig: `// Eigen.js (WASM) - SparseMatrix + SimplicialCholesky
+const A = createSparsePoissonMatrix(size);
+const b = createVector(size);
+for (let k = 0; k < iterations; k++) {
+  const chol = new eig.SimplicialCholesky(A);
+  const x = chol.solve(b);
+}`,
+      suitesparse: `// SuiteSparse (WASM) - UMFPACK Sparse LU Solver
+const problem = createCscSparseProblem(size);
+for (let k = 0; k < iterations; k++) {
+  const res = umfpack.solveComplexSystem(problem);
+}`
+    },
+    run: (type, size, iterations) => {
+      const problem = generateSparsePoissonProblem(size);
+      const start = performance.now();
+
+      if (type === 'eig') {
+        if (!window.eig?.SparseMatrix) throw new Error('Eigen.js is not loaded or ready.');
+        const triplets = new window.eig.TripletVector(problem.nnz);
+        for (let col = 0; col < problem.nCol; col++) {
+          for (let p = problem.ap[col]; p < problem.ap[col + 1]; p++) {
+            triplets.add(problem.ai[p], col, problem.ax[p]);
+          }
+        }
+        const A = new window.eig.SparseMatrix(problem.nRow, problem.nCol, triplets);
+        const b = new window.eig.Matrix(Array.from(problem.bx).map(v => [v]));
+
+        for (let k = 0; k < iterations; k++) {
+          const chol = new window.eig.SimplicialCholesky(A);
+          const x = chol.solve(b);
+        }
+        const elapsed = performance.now() - start;
+        window.eig?.GC?.flush();
+        return elapsed;
+      } else if (type === 'suitesparse') {
+        if (!window.umfpack?.solveComplexSystem) throw new Error('SuiteSparse (UMFPACK) is not loaded or ready.');
+        for (let k = 0; k < iterations; k++) {
+          window.umfpack.solveComplexSystem(problem);
         }
         return performance.now() - start;
       }

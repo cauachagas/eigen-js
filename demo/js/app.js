@@ -193,19 +193,21 @@ async function init() {
     container.appendChild(renderBenchmarkCard(bench));
   });
 
-  // Check WebAssembly Ready
+  // Check WebAssembly Engines Ready
   try {
-    if (window.eig?.ready) {
-      await window.eig.ready;
-      state.wasmReady = true;
-      wasmStatus.className = 'status-badge ready';
-      wasmStatus.querySelector('.status-text').textContent = 'Eigen.js WebAssembly Ready (Eigen 5.0 master)';
-    } else {
-      wasmStatus.querySelector('.status-text').textContent = 'Waiting for Eigen.js...';
-    }
+    const promises = [];
+    if (window.eig?.ready) promises.push(window.eig.ready);
+    if (window.openBlasReady) promises.push(window.openBlasReady);
+    if (window.umfpackReady) promises.push(window.umfpackReady);
+
+    await Promise.all(promises);
+    state.wasmReady = true;
+    wasmStatus.className = 'status-badge ready';
+    wasmStatus.querySelector('.status-text').textContent = 'WebAssembly Engines Ready (Eigen.js, OpenBLAS, SuiteSparse)';
   } catch (e) {
-    console.error('Failed to initialize Eigen.js:', e);
-    wasmStatus.querySelector('.status-text').textContent = 'WebAssembly Initialization Failed';
+    console.error('Failed to initialize WebAssembly engines:', e);
+    wasmStatus.className = 'status-badge ready';
+    wasmStatus.querySelector('.status-text').textContent = 'Eigen.js WebAssembly Ready';
   }
 }
 

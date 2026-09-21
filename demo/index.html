@@ -18,6 +18,20 @@
   <script src="https://cdn.jsdelivr.net/npm/linear-algebra@3.1.4/dist/linear-algebra.min.js"></script>
   <!-- Eigen.js WASM Bundle -->
   <script src="dist/index.js"></script>
+
+  <!-- External WASM Engines: OpenBLAS and SuiteSparse (UMFPACK) -->
+  <script type="module">
+    import { loadOpenBlas } from './vendor/openblas/openblas-loader.js';
+    import { loadUmfpack } from './vendor/suitesparse/umfpack-loader.js';
+
+    window.openBlasReady = loadOpenBlas({ print: () => {}, printErr: () => {} })
+      .then(ob => { window.openBlas = ob; return ob; })
+      .catch(err => console.warn('OpenBLAS load failed:', err));
+
+    window.umfpackReady = loadUmfpack({ print: () => {}, printErr: () => {} })
+      .then(uf => { window.umfpack = uf; return uf; })
+      .catch(err => console.warn('SuiteSparse load failed:', err));
+  </script>
 </head>
 <body>
   <!-- Top Navigation Bar -->
