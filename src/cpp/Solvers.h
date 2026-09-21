@@ -35,13 +35,11 @@ public:
 
   static EigenSolverResult eigenSolve(const DMD &matrix, bool computeEigenvectors = true)
   {
-    // const EigenBase<InputType> &matrix
-    Eigen::EigenSolver<Matrix> data = Eigen::EigenSolver<Matrix>(matrix.data, computeEigenvectors);
-    // return EigenSolverResult(data);
+    Eigen::EigenSolver<Matrix> data(matrix.data, computeEigenvectors);
     return (EigenSolverResult){
       .info = data.info(),
       .eigenvalues = CMD(data.eigenvalues()),
-      .eigenvectors = CMD(data.eigenvectors())
+      .eigenvectors = computeEigenvectors ? CMD(data.eigenvectors()) : CMD(0, 0)
     };
   };
 

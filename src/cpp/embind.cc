@@ -173,7 +173,12 @@ EMSCRIPTEN_BINDINGS(Module)
         .field("S", &CareSolver::CareSolverResult::S);
 
     class_<Solvers>("Solvers")
-        .class_function("eigenSolve", &Solvers::eigenSolve)
+        .class_function("eigenSolve", optional_override([](const DDM &m, bool computeVectors) {
+            return Solvers::eigenSolve(m, computeVectors);
+        }))
+        .class_function("eigenSolve", optional_override([](const DDM &m) {
+            return Solvers::eigenSolve(m, true);
+        }))
         .class_function("careSolve", &Solvers::careSolve)
         .class_function("createSimplicialCholeskySolver", &Solvers::createSimplicialCholeskySolver)
         #ifndef NO_OSQP
