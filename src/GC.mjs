@@ -1,5 +1,3 @@
-import HashMap from 'hashmap'
-
 function getStaticMethods(Class) {
   return Object.getOwnPropertyNames(Class).filter(prop => prop !== "constructor" && typeof Class[prop] === "function");
 }
@@ -23,7 +21,7 @@ class GarbageCollector {
       const val = GarbageCollector.whitelist.get(obj) || 0
       GarbageCollector.whitelist.set(obj, val - 1)
       if (GarbageCollector.whitelist.get(obj) <= 0) {
-        GarbageCollector.whitelist.remove(obj)
+        GarbageCollector.whitelist.delete(obj)
       }
     })
   }
@@ -33,7 +31,9 @@ class GarbageCollector {
       obj => !GarbageCollector.whitelist.has(obj)
     )
     flushed.forEach(obj => {
-      obj.delete()
+      if (typeof obj.delete === 'function') {
+        obj.delete()
+      }
       GarbageCollector.objects.delete(obj)
     })
     return flushed.length
@@ -62,23 +62,24 @@ class GarbageCollector {
       GarbageCollector.add(instance)
       return instance
     }
-    const arr = [Class, Class.prototype] // forEach doesn't seem to work
+    const arr = [Class, Class.prototype]
     for (let idx in arr) {
       let obj = arr[idx]
       getStaticMethods(obj).forEach(method => {
-        // console.log(`Wrapping reg method ${method} of ${Class}`)
         const fun = obj[method]
-        obj[method] = function (...args) {
+        const wrapper = function (...args) {
           const rtn = fun.call(this, ...args)
-          if (rtn && classes.has(rtn.constructor.name)) {
+          if (rtn && classes.has(rtn?.constructor?.name)) {
             GarbageCollector.add(rtn)
           }
           return rtn
         }
+        Object.assign(wrapper, fun);
+        if (fun.overloadTable) wrapper.overloadTable = fun.overloadTable;
+        obj[method] = wrapper;
       })
     }
 
-    // Class.prototype.constructor = NewClass TODO: control
     getStaticMethods(Class).forEach(method => {
       NewClass[method] = Class[method];
     })
@@ -89,7 +90,7 @@ class GarbageCollector {
 
 // Add static members
 GarbageCollector.objects = new Set();
-GarbageCollector.whitelist = new HashMap(); // Reference count
+GarbageCollector.whitelist = new Map(); // Reference count
 
 export default GarbageCollector
 export { getStaticMethods }

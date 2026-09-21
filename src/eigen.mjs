@@ -121,6 +121,9 @@ eig.ready = Module.then(module => {
       console.log('Error in eig.ready: no class ' + className)
     }
   })
+  if (module.ComputationInfo) {
+    eig.ComputationInfo = module.ComputationInfo;
+  }
   addHelpers(eig);
 })
 

@@ -4,5 +4,7 @@ node_modules/
 yarn.lock
 yarn-error.log
 test
-build
+build/
 *.code-workspace
+lib/osqp/build/
+coverage/
