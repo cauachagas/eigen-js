@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
-const artifactDir = '/Users/cauachagas/.gemini/antigravity-ide/brain/9b7ec120-2a58-4b49-8123-988ddafe5e60';
+const artifactDir = process.env.ARTIFACT_DIR || rootDir;
 
 console.log('=== Running Playwright Browser Benchmark Test ===');
 
@@ -89,7 +89,27 @@ try {
   console.log('\n--- Matrix Inversion Benchmark Results ---');
   invResults.forEach(r => console.log(`  ${r.library}: ${r.result}`));
 
-  // 5. Capture screenshot
+  // 5. Click RUN ALL on SVD
+  console.log('\nRunning RUN ALL on Singular Value Decomposition...');
+  await page.click('#runAll_mat_svd');
+  await page.waitForFunction(() => {
+    const btn = document.querySelector('#runAll_mat_svd');
+    return btn && !btn.disabled && !btn.textContent.includes('Running');
+  }, { timeout: 30000 });
+
+  const svdResults = await page.evaluate(() => {
+    const cells = Array.from(document.querySelectorAll('#card_mat_svd .results-table td'));
+    const headers = Array.from(document.querySelectorAll('#card_mat_svd .results-table th'));
+    return headers.map((h, i) => ({
+      library: h.textContent.trim(),
+      result: cells[i]?.textContent.trim()
+    }));
+  });
+
+  console.log('\n--- SVD Benchmark Results ---');
+  svdResults.forEach(r => console.log(`  ${r.library}: ${r.result}`));
+
+  // 6. Capture screenshot
   const screenshotPath = path.join(artifactDir, 'benchmark_screenshot.png');
   await page.screenshot({ path: screenshotPath, fullPage: true });
   console.log(`\nScreenshot saved to: ${screenshotPath}`);
