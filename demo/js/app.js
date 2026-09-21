@@ -9,7 +9,7 @@ const state = {
 function formatCode(rawCode) {
   return rawCode
     .replace(/\b(const|let|var|for|function|return|new)\b/g, '<span class="code-keyword">$1</span>')
-    .replace(/\b(createMatrix|matMul|mmul|multiply|dot|mul|inverse|inv|svd)\b/g, '<span class="code-function">$1</span>')
+    .replace(/\b(createMatrix|createSparsePoissonMatrix|createCscSparseProblem|createVector|matMul|mmul|multiply|dot|mul|inverse|inv|svd|solve|solveComplexSystem|SparseLU|SimplicialCholesky)\b/g, '<span class="code-function">$1</span>')
     .replace(/('[\w]+'|"[\w]+")/g, '<span class="code-string">$1</span>');
 }
 
